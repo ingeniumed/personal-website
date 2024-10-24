@@ -4,8 +4,7 @@ import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Hr from "@components/Hr.astro";
 import LinkButton from "@components/LinkButton.astro";
-import Socials from "@components/Socials.astro";
-import { SITE, SOCIALS } from "@config";
+import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { getCollection } from "astro:content";
@@ -15,35 +14,23 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-
-const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
   <Header />
   <main id="main-content">
     <section id="hero">
+      <h1>Gopal Krishnan</h1>
       <p>
-        Hi there! I'm Gopal and this is my personal website.
+        Hi there! This is where I write about my thoughts, ideas,
+        and whatever else is floating around in my head.
+        <br />
+        Check out the <LinkButton
+          href="/about"
+          className="my-6 text-lg underline decoration-dashed underline-offset-8"
+          >about page</LinkButton
+        > to know more about me.
       </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
     </section>
 
     <Hr />
