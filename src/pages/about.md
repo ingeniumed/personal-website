@@ -3,34 +3,15 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+![me](@assets/images/about-me.jpg)
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+👋🏾 I'm Gopal, and I'm currently an engineering manager at Automattic, leading the team working on our Enterprise Gutenberg offering. I’ve a post here on what it’s like to interview at Automattic, if that's something of interest.
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+I currently live in Sydney, Australia with my wife and our son. My wife, whose Australian, had been working in Canada when we met and after getting married, we decided to move here in the middle of 2022. which is where I'm originally from. This would be the 3rd continent that I have lived on, as I grew up in the Middle East for the first 15 years of my life.
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+My hobbies include (_spending time with my family goes without saying_):
 
-## Tech Stack
-
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
-
-## Features
-
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+- Travelling
+- Perfecting the art of making coffee
+- Catching up on my movies and tv-shows
+- Working out
