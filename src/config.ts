@@ -4,6 +4,7 @@ export const SITE: Site = {
   website: "https://personal-website-beta-eight-51.vercel.app/", // replace this with your deployed domain
   author: "Gopal Krishnan",
   desc: "Just a bunch of thoughts, musings with a hint of coffee thrown in.",
+  profile: "https://au.linkedin.com/in/ingeniumed",
   title: "Gopal Krishnan",
   lightAndDarkMode: true,
   postPerIndex: 4,

@@ -1,6 +1,6 @@
 {
   "name": "personal-website",
-  "version": "0.0.1",
+  "version": "0.5",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -14,8 +14,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/rss": "^4.0.7",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.16.3",
     "fuse.js": "^7.0.0",
