@@ -6,10 +6,10 @@ slug: privilege
 tags:
   - tv-shows
   - personal
-description: A summary of the docu-series on the different job tiers
+description: A recommendation from me to watch the docu-series, Working - What We Do All Day
 ---
 
-Ever since my wife and I saw the new documentary series hosted by President Barack Obama, I have had this word stuck in my head – privilege. In the series, the president explores different job tiers from the lens of someone working a job that fits in that tier.
+Ever since my wife and I saw the new documentary series hosted by President Barack Obama - Working: What We Do All Day, I have had this word stuck in my head – privilege. In the series, the president explores different job tiers from the lens of someone working a job that fits in that tier.
 
 The hierarchy that they follow is:
 
