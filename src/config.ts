@@ -3,12 +3,12 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://personal-website-beta-eight-51.vercel.app/", // replace this with your deployed domain
   author: "Gopal Krishnan",
-  profile: "https://gopalsmusings.wordpress.com",
   desc: "Just a bunch of thoughts, musings with a hint of coffee thrown in.",
-  title: "Personal Website",
+  profile: "https://au.linkedin.com/in/ingeniumed",
+  title: "Gopal Krishnan",
   lightAndDarkMode: true,
   postPerIndex: 4,
-  postPerPage: 3,
+  postPerPage: 4,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: false,
 };
