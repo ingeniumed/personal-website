@@ -1,41 +1,38 @@
-import type { Site, SocialObjects } from "./types";
+import type { ThemeConfig } from './types'
 
-export const SITE: Site = {
-  website: "https://personal-website-beta-eight-51.vercel.app/", // replace this with your deployed domain
-  author: "Gopal Krishnan",
-  desc: "Just a bunch of thoughts, musings with a hint of coffee thrown in.",
-  profile: "https://au.linkedin.com/in/ingeniumed",
-  title: "Gopal Krishnan",
-  lightAndDarkMode: true,
-  postPerIndex: 4,
-  postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-  showArchives: false,
-};
-
-export const LOCALE = {
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  langTag: ["en-EN"], // BCP 47 Language Tags. Set this empty [] to use the environment default
-} as const;
-
-export const LOGO_IMAGE = {
-  enable: false,
-  svg: true,
-  width: 216,
-  height: 46,
-};
-
-export const SOCIALS: SocialObjects = [
-  {
-    name: "Github",
-    href: "https://github.com/ingeniumed",
-    linkTitle: ` ${SITE.title} on Github`,
-    active: true,
+export const themeConfig: ThemeConfig = {
+  // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
+  site: {
+    website: 'https://personal-website-beta-eight-51.vercel.app/', // Site domain
+    title: 'Developer, Dad, Coffee Enthusiast', // Site title
+    author: 'Gopal Krishnan', // Author name
+    description: 'Just a bunch of thoughts by a dad, with a hint of coffee thrown in.', // Site description
+    language: 'en-US' // Default language
   },
-  {
-    name: "LinkedIn",
-    href: "https://au.linkedin.com/in/ingeniumed",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    active: true,
+
+  // GENERAL SETTINGS ////////////////////////////////////////////////////////////////////////////////////
+  general: {
+    contentWidth: '35rem', // Content area width
+    centeredLayout: true, // Use centered layout (false for left-aligned)
+    themeToggle: true, // Show theme toggle button (uses system theme by default)
+    postListDottedDivider: false, // Show dotted divider in post list
+    footer: true, // Show footer
+    fadeAnimation: true // Enable fade animations
   },
-];
+
+  // DATE SETTINGS ///////////////////////////////////////////////////////////////////////////////////////
+  date: {
+    dateFormat: 'DD-MM-YYYY', // Date format: YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
+    dateSeparator: '.', // Date separator: . - / (except for MONTH DAY YYYY and DAY MONTH YYYY)
+    dateOnRight: true // Date position in post list (true for right, false for left)
+  },
+
+  // POST SETTINGS ///////////////////////////////////////////////////////////////////////////////////////
+  post: {
+    readingTime: false, // Show reading time in posts
+    toc: true, // Show table of contents (when there is enough page width)
+    imageViewer: true, // Enable image viewer
+    copyCode: true, // Enable copy button in code blocks
+    linkCard: true // Enable link card
+  }
+}

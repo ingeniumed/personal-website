@@ -1,44 +1,54 @@
-import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import { defineConfig } from "astro/config";
-import remarkCollapse from "remark-collapse";
-import remarkToc from "remark-toc";
-import { SITE } from "./src/config";
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import playformInline from '@playform/inline'
+import remarkMath from 'remark-math'
+import remarkDirective from 'remark-directive'
+import rehypeKatex from 'rehype-katex'
+import remarkEmbeddedMedia from './src/plugins/remark-embedded-media.mjs'
+import remarkReadingTime from './src/plugins/remark-reading-time.mjs'
+import rehypeCleanup from './src/plugins/rehype-cleanup.mjs'
+import rehypeImageProcessor from './src/plugins/rehype-image-processor.mjs'
+import rehypeCopyCode from './src/plugins/rehype-copy-code.mjs'
+import remarkTOC from './src/plugins/remark-toc.mjs'
+import { themeConfig } from './src/config'
+import { imageConfig } from './src/utils/image-config'
+import path from 'path'
 
-// https://astro.build/config
+import robots from 'astro-robots'
+
 export default defineConfig({
-  site: SITE.website,
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    sitemap(),
-  ],
+  site: themeConfig.site.website,
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: imageConfig
+    }
+  },
   markdown: {
-    remarkPlugins: [
-      remarkToc,
-      [
-        remarkCollapse,
-        {
-          test: "Table of contents",
-        },
-      ],
-    ],
     shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
-      wrap: true,
+      theme: 'css-variables',
+      wrap: false
     },
+    remarkPlugins: [remarkMath, remarkDirective, remarkEmbeddedMedia, remarkReadingTime, remarkTOC],
+    rehypePlugins: [rehypeKatex, rehypeCleanup, rehypeImageProcessor, rehypeCopyCode]
   },
+  integrations: [
+    playformInline({
+      Exclude: [(file) => file.toLowerCase().includes('katex')]
+    }),
+    mdx(),
+    sitemap(),
+    robots()
+  ],
   vite: {
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
+    resolve: {
+      alias: {
+        '@': path.resolve('./src')
+      }
+    }
   },
-  scopedStyleStrategy: "where",
-  experimental: {
-    contentLayer: true,
-  },
-});
+  devToolbar: {
+    enabled: false
+  }
+})
