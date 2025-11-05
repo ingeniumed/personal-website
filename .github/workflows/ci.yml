@@ -10,11 +10,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
-  pull-requests: write
-  checks: read
-
 jobs:
   validate:
     name: Validate Code & Build
@@ -38,26 +33,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
 
-      - name: Check formatting (if prettier is available)
-        run: |
-          if [ -f "pnpm-lock.yaml" ] && pnpm list prettier &>/dev/null; then
-            pnpm exec prettier --check .
-          else
-            echo "Prettier not configured, skipping format check"
-          fi
-        continue-on-error: true
-
-      - name: Run ESLint (if available)
-        run: |
-          if [ -f "pnpm-lock.yaml" ] && pnpm list eslint &>/dev/null; then
-            pnpm exec eslint .
-          else
-            echo "ESLint not configured, skipping lint check"
-          fi
-        continue-on-error: true
+      - name: Check formatting
+        run: pnpm run format:check
 
       - name: Run linting
-        run: pnpm lint
+        run: pnpm run lint
 
       - name: Build project
-        run: pnpm build
+        run: pnpm run build
