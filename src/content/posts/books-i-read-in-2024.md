@@ -9,7 +9,7 @@ tags:
 description: The books that I read in 2024
 ---
 
-![Chip War](./_assets/book-read-2024-cover.jpeg "Chip War")
+![Chip War](./_assets/book-read-2024-cover.jpeg 'Chip War')
 
 ## Background
 

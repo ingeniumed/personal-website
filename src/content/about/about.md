@@ -7,7 +7,7 @@ This content will be displayed at the top of the index page.
 You can leave this empty if you don’t want to show any content.
 -->
 
-![Coding on Bondi Beach](./_assets/me.jpg "Coding on Bondi Beach")
+![Coding on Bondi Beach](./_assets/me.jpg 'Coding on Bondi Beach')
 
 I work at Automattic as a Senior Software Developer.
 
