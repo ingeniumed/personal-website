@@ -35,7 +35,8 @@ export default [
       '.cache/**',
       '.astro/**',
       '.DS_Store',
-      'coverage/**'
+      'coverage/**',
+      '.vercel/**'
     ]
   }
 ]
