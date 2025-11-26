@@ -17,14 +17,18 @@ import path from 'path'
 
 import robots from 'astro-robots'
 
+import vercel from '@astrojs/vercel'
+
 export default defineConfig({
   site: themeConfig.site.website,
+
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
       config: imageConfig
     }
   },
+
   markdown: {
     shikiConfig: {
       theme: 'css-variables',
@@ -33,6 +37,7 @@ export default defineConfig({
     remarkPlugins: [remarkMath, remarkDirective, remarkEmbeddedMedia, remarkReadingTime, remarkTOC],
     rehypePlugins: [rehypeKatex, rehypeCleanup, rehypeImageProcessor, rehypeCopyCode]
   },
+
   integrations: [
     playformInline({
       Exclude: [(file) => file.toLowerCase().includes('katex')]
@@ -41,6 +46,7 @@ export default defineConfig({
     sitemap(),
     robots()
   ],
+
   vite: {
     resolve: {
       alias: {
@@ -48,7 +54,10 @@ export default defineConfig({
       }
     }
   },
+
   devToolbar: {
     enabled: false
-  }
+  },
+
+  adapter: vercel()
 })
