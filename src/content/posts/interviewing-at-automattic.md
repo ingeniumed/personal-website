@@ -9,7 +9,7 @@ tags:
 description: A breakdown of the interview process to work at Automattic
 ---
 
-![Accepted slack offer](./_assets/slack-offer-accepted.png "Accepted Slack Offer")
+![Accepted slack offer](./_assets/slack-offer-accepted.png 'Accepted Slack Offer')
 
 Back in 2014, I was hired to be the webmaster for the [McMaster Engineering Society](https://www.macengsociety.ca). Their website was built using WordPress, and hosted on GoDaddy. Since then, I've always wanted to work at Automattic and when the opportunity came up in 2021, I took it!
 
@@ -89,7 +89,7 @@ A big credit during this time goes to my wonderful wife who allowed me to focus 
 
 ### The Offer
 
-![slack-offer-given](./_assets/slack-offer-given.png "Slack Offer")
+![slack-offer-given](./_assets/slack-offer-given.png 'Slack Offer')
 
 Getting this far means that you were successful in the trial, and have moved on to the chat with HR to discuss your offer. This is meant to go over the details of the offer with an HR Wrangler via Slack.
 
