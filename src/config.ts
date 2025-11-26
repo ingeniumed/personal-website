@@ -4,9 +4,9 @@ export const themeConfig: ThemeConfig = {
   // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
   site: {
     website: 'https://personal-website-beta-eight-51.vercel.app/', // Site domain
-    title: 'Developer, Dad, Coffee Enthusiast', // Site title
+    title: 'Developer, Dad, Gamer, Coffee Enthusiast', // Site title
     author: 'Gopal Krishnan', // Author name
-    description: 'Just a bunch of thoughts by a dad, with a hint of coffee thrown in.', // Site description
+    description: 'Just a bunch of thoughts by a dad, with a hint of coffee and gaming thrown in.', // Site description
     language: 'en-US' // Default language
   },
 
