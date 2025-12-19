@@ -8,7 +8,7 @@ tags:
 description: A parenting realization that I had recently
 ---
 
-![My son and I](./_assets/ojas_and_I.jpg 'My son and I')
+![My son and I](/images/ojas_and_I.jpg 'My son and I')
 
 I’ve always had a deep sense of respect and love for my parents for giving my brother and me a wonderful childhood. They left India when I was three and built a great life that has allowed me to live the way I want.
 

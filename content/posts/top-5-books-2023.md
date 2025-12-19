@@ -3,13 +3,15 @@ author: Gopal Krishnan
 pubDate: 2023-10-26
 title: Top 5 Books (2023)
 slug: top-5-books-2023
+ShowToc: true
+TocOpen: true
 tags:
   - books
   - personal
 description: My top 5 books as of 2023, that I'd recommend
 ---
 
-![The Alchemist and Ikigai](./_assets/book-read-2023.jpeg 'The Alchemist and Ikigai')
+![The Alchemist and Ikigai](/images/book-read-2023.jpeg 'The Alchemist and Ikigai')
 
 ## Background
 

@@ -22,4 +22,4 @@ As someone who works in the IT field, I fit into the dream jobs category. I had 
 
 I recommend watching this series, the trailer for which can be found below:
 
-::youtube{url="https://www.youtube.com/watch?v=eS6GkydzCRg"}
+{{< youtube eS6GkydzCRg >}}

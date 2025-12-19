@@ -7,9 +7,11 @@ tags:
   - books
   - personal
 description: The books that I read in 2024
+ShowToc: true
+TocOpen: true
 ---
 
-![Chip War](./_assets/book-read-2024-cover.jpeg 'Chip War')
+![Chip War](/images/book-read-2024-cover.jpeg 'Chip War')
 
 ## Background
 
