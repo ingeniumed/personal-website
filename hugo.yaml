@@ -30,8 +30,8 @@ languages:
       series: series
     menu:
       main:
-        - name: Archive
-          url: archives
+        - name: Posts
+          url: posts
           weight: 5
         - name: Search
           url: search/
@@ -79,7 +79,20 @@ params:
       url: "https://www.linkedin.com/in/ingeniumed/"
 
   assets:
+    disableFingerprinting: true
     disableHLJS: true
+
+  label:
+    text: "Home"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10
 
 markup:
   goldmark:
