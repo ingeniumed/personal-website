@@ -1,0 +1,48 @@
+---
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { SITE } from "@/config";
+import profileImage from "@/assets/images/profile.jpg";
+---
+
+<Layout title={`About | ${SITE.title}`}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <section id="about" class="app-prose mb-28 max-w-app prose-img:border-0">
+      <h1 class="text-2xl tracking-wider sm:text-3xl">About</h1>
+      <Image
+        src={profileImage}
+        alt="Gopal Krishnan"
+        width={400}
+        class="rounded-lg"
+      />
+      <p>
+        I'm Gopal, and I work at <a href="https://automattic.com/">Automattic</a
+        > in the VIP division. I've a <a href="/posts/working-at-automattic/"
+          >post here</a
+        > on what it's like to interview at Automattic, if that's something of interest.
+      </p>
+      <p>
+        I am a Canadian living in Sydney, Australia with my wife and son. While
+        writing this page about myself, I realized I've lived on 3 continents
+        already. I'm hoping to finish visiting all the continents soon!
+      </p>
+      <p>When I'm not spending time with my family, I can also be found:</p>
+      <ul>
+        <li>Travelling</li>
+        <li>Perfecting the art of making coffee</li>
+        <li>Catching up on my movies and TV-Shows</li>
+        <li>Working out</li>
+        <li>Playing board games with my board game group</li>
+      </ul>
+      <p>
+        You can also view my <a href="/resume.pdf">resume</a>.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
