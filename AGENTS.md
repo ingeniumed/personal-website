@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the source for [personal-website.pages.dev](https://personal-website.pages.dev/), Gopal Krishnan's personal blog. It is built with [Astro](https://astro.build/) using the [AstroPaper](https://github.com/satnaing/astro-paper) theme (v5), styled with Tailwind CSS v4, and deployed to Cloudflare Pages as a fully static site (no SSR).
+This is the source for [personal-website-qqg.pages.dev](https://personal-website-qqg.pages.dev/), Gopal Krishnan's personal blog. It is built with [Astro](https://astro.build/) using the [AstroPaper](https://github.com/satnaing/astro-paper) theme (v5), styled with Tailwind CSS v4, and deployed to Cloudflare Pages as a fully static site (no SSR).
 
 ## Tech Stack
 
