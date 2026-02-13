@@ -51,7 +51,6 @@ tags:
   - personal
 description: A short description for SEO and post excerpts.
 ---
-
 Post content in Markdown goes here.
 ```
 
