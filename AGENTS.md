@@ -27,7 +27,7 @@ src/
 ├── data/
 │   └── blog/           # Blog posts as Markdown files
 ├── layouts/            # Page layouts
-├── pages/              # Routes (index, about, posts, tags, archives, RSS, etc.)
+├── pages/              # Routes (index, about, posts, RSS, search)
 ├── styles/             # Global CSS + typography
 └── utils/              # Helpers (sorting, filtering, OG generation, etc.)
 public/
@@ -50,7 +50,7 @@ author: Gopal Krishnan           # Required
 pubDatetime: 2025-01-14T03:48:50Z # Required, ISO 8601
 title: My Post Title               # Required
 slug: my-post-title                # Optional (auto-derived from filename)
-featured: false                    # Optional, shows in Featured section on homepage
+featured: false                    # Optional, not currently used but kept in schema
 draft: false                       # Optional, hides post when true
 tags:                              # Optional, defaults to ["others"]
   - personal
@@ -58,7 +58,7 @@ tags:                              # Optional, defaults to ["others"]
 description: A short description   # Required, used for SEO meta + post excerpts
 ogImage: ./path-to-image.png       # Optional, auto-generated if omitted
 canonicalURL: https://...          # Optional, for cross-posted content
-timezone: America/Toronto          # Optional, overrides site default
+timezone: Australia/Sydney          # Optional, overrides site default
 ---
 ```
 
@@ -86,11 +86,14 @@ Site metadata: title, author, description, URL, timezone, OG image settings, pos
 ### `src/constants.ts`
 Social media links displayed in the footer and share buttons on posts. Currently configured with GitHub and LinkedIn only. No email link (Gopal prefers to keep it private).
 
-### `src/pages/about.md`
-The About page content, written in Markdown. Includes a link to `/resume.pdf`.
+### `src/pages/about.astro`
+The About page. Uses Astro's `<Image>` component for the profile photo (auto-optimized). Includes bio, hobbies, link to the Automattic post, and resume link.
 
 ### `src/pages/index.astro`
-The homepage. Has a personalized hero section with Gopal's intro and social links, followed by Featured and Recent Posts sections.
+The homepage. Has a short hero section with social links, followed by a single chronological "Posts" section (showing `postPerIndex` most recent posts) and an "All Posts" link.
+
+### Removed pages
+Tags (`/tags`) and Archives (`/archives`) have been intentionally removed. Tags are still stored in post frontmatter but are not displayed or linked anywhere on the site.
 
 ## Build & Development
 
