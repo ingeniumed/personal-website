@@ -51,7 +51,5 @@ _testmain.go
 *.exe
 *.test
 
-/public
-.DS_Store
-.hugo_build.lock
-resources/_gen/
+# Pagefind output (generated at build time, copied into public/)
+public/pagefind/
