@@ -1,12 +1,12 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2025-06-07T09:08:22Z
-title: Parenting
+title: "Parenting — A New Dad's Perspective"
 slug: parenting
 featured: false
 tags:
   - personal
-description: Reflections on becoming a father and a newfound empathy for my own parents.
+description: "Becoming a dad changed how I see my own parents. Reflections on the challenges of parenting, and a newfound empathy for the people who made it look easy."
 ---
 
 I've always had a deep sense of respect and love for my parents for giving my brother and me a wonderful childhood. They left India when I was three and built a great life that has allowed me to live the way I want.
