@@ -147,6 +147,16 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - Annual "Books I read in [year]" post is an ongoing tradition
 - Blockquotes are used for notable quotes, with attribution
 
+**Common grammar habits to watch for when reviewing drafts:**
+- Tends to add unnecessary commas before "and" in compound predicates (e.g. "I signed up for X, and realized" → "I signed up for X and realized"). A comma before "and" is only needed when joining two independent clauses (each with its own subject)
+- Occasionally places commas after introductory subjects rather than after introductory clauses (e.g. "after you apply, is" → "after you apply is")
+- Watch for "it's" vs "its" — possessive "its" has no apostrophe
+- "how it's like" should be "what it's like"
+- Preposition choices: "from the lens" → "through the lens", "information around" → "information on/about"
+- Compound adjectives before nouns should be hyphenated (e.g. "hand-wavy", "front-end", "back-end")
+- Uses hyphens where em dashes (—) are more appropriate for parenthetical asides
+- Long sentences can sometimes be broken into two for readability, especially when listing many items
+
 **Privacy:**
 - Never include Gopal's email address anywhere on the site
 - No last names for family members (refers to "my wife", "my son", "my parents", "my brother")
