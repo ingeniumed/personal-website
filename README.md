@@ -1,6 +1,6 @@
 # personal-website
 
-Source code for [personal-website-qqg.pages.dev](https://personal-website-qqg.pages.dev/) — my personal blog where I write about being a developer, dad, and coffee enthusiast.
+Source code for [personal-website-qqg.pages.dev](https://personal-website-qqg.pages.dev/) — my personal blog.
 
 ## Tech Stack
 
