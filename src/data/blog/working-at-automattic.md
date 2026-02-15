@@ -1,13 +1,13 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2022-08-05T04:06:56Z
-title: Working at Automattic
+title: "Working at Automattic — The Interview Process"
 slug: working-at-automattic
 featured: true
 tags:
   - automattic
   - work
-description: A breakdown of my experience going through the Automattic interview process, from the recruiter chat all the way to the offer.
+description: "A detailed breakdown of the Automattic interview process — from the recruiter chat and Slack interview to the code test, paid trial, and the final offer."
 ---
 
 ## Table of contents

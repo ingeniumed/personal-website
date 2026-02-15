@@ -1,13 +1,13 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2026-01-05T03:05:04Z
-title: Books I read in 2025
+title: Every Book I Read in 2025
 slug: books-i-read-in-2025
 featured: true
 tags:
   - personal
   - lists
-description: Continuing the annual tradition — every book I read in 2025, from Sapiens to Siddhartha.
+description: "Continuing my annual reading tradition — every book I read in 2025, from Sapiens and Meditations to Dungeon Crawler Carl and Siddhartha."
 ---
 
 Continuing my annual tradition from [last year's post](/posts/books-i-read-in-2024), here are the books that defined my 2025.
