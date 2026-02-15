@@ -21,12 +21,12 @@ The list is in the order in which I read each book, starting from January:
 - Pyramids (Discworld)
 - Odyssey
 - The Dream Hotel
-- Omega Taskforce - Books 1 - 6
+- Omega Taskforce - Books 1–6
 - Meditations
 - The Midnight Library
 - Skunk Works
 - The Ministry of Time
-- Dungeon Crawler Carl - Books 1 - 4
+- Dungeon Crawler Carl - Books 1–4
 - Leviathan Falls
 - Old Man's War
 - Slow Horses

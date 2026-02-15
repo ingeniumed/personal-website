@@ -1,22 +1,20 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2023-10-25T22:50:06Z
-title: Top 5 Books - 2023
-slug: top-5-books-2023
+title: Top 5 Books
+slug: top-5-books
 featured: false
 tags:
   - personal
   - lists
-description: The top 5 books I gift every year, inspired by Tim Ferriss's classic question.
+description: The top 5 books I gift every year, inspired by Tim Ferriss's classic interview question.
 ---
 
-I'm a regular listener of Tim Ferriss's podcast, and one of the most insightful questions I love to hear the answer to is:
+One of Tim Ferriss's favourite interviewing techniques is to ask his guests:
 
 > What are the top 5 books that you gift every year?
 
-It's such a unique way to ask, because you don't need to think through the various books you have read recently. You know instantly the ones that you like to gift, and can explain why as well.
-
-So, I figured I would try to answer this question as well. Each of the books below have had an impact on my life, and I revisit them every year.
+It's a unique way to ask about someone's favourite books, because you wouldn't frequently gift a book that wasn't one. It prompted me to think about how I would answer this question. So here it is — each of these books has had an impact on my life, and I revisit them every year.
 
 ### [The Alchemist](https://www.goodreads.com/book/show/18144590-the-alchemist)
 
