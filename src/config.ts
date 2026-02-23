@@ -1,5 +1,5 @@
 export const SITE = {
-  website: "https://personal-website-qqg.pages.dev/",
+  website: "https://gkrishnan.blog/",
   author: "Gopal Krishnan",
   profile: "https://github.com/ingeniumed",
   desc: "Gopal Krishnan — developer, dad, and coffee enthusiast. Writing about software, parenting, and books.",
