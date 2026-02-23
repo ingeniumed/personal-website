@@ -4,7 +4,7 @@ export const SITE = {
   profile: "https://github.com/ingeniumed",
   desc: "Gopal Krishnan — developer, dad, and coffee enthusiast. Writing about software, parenting, and books.",
   title: "Gopal Krishnan — Developer, Dad, Coffee Enthusiast",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 6,

@@ -72,7 +72,7 @@ src/
 public/
 ├── favicon.svg
 ├── resume.pdf
-└── astropaper-og.jpg # Fallback OG image
+└── og.png            # Generated dynamically by Satori at build time
 ```
 
 ## CI
