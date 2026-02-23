@@ -33,7 +33,7 @@ src/
 public/
 ├── favicon.svg
 ├── resume.pdf          # Gopal's resume (static file, linked from About page)
-└── astropaper-og.jpg   # Fallback OG image
+└── og.png              # Generated dynamically by Satori at build time
 ```
 
 ## Blog Posts
@@ -173,3 +173,18 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - **OG image generation requires internet:** The build fetches Google Fonts (Google Sans Code) for dynamic OG images. If building offline, set `dynamicOgImage: false` in `config.ts`.
 - **Legacy draft posts:** There are some old AstroPaper sample posts still in `src/data/blog/` marked with `draft: true`. These are invisible on the site and can be safely deleted.
 - **Existing blog:** This site was migrated from a WordPress blog at gkrishnan.blog in February 2026. The WordPress export XML is not included in the repo.
+- **Tag quoting in frontmatter:** Numeric tag values (e.g. `2024`) must be quoted as strings (`"2024"`) in YAML frontmatter — the Zod content schema validates tags as `string[]`, and unquoted YAML numbers will fail the build.
+- **OG image:** The site-level OG image is dynamically generated at `/og.png` via Satori. The `ogImage` field in `config.ts` points to `og.png`. There is no static fallback image in `public/` — if `dynamicOgImage` is set to `false`, you would need to add a static OG image manually.
+- **External links in posts:** Blog posts link to external sites (Goodreads, Automattic, YouTube, etc.). These should be periodically verified — job listing URLs and third-party blog posts can go stale over time.
+
+## Pre-Launch / Pre-Deploy Checklist
+
+Before deploying, always run:
+
+```bash
+pnpm format        # Fix formatting
+pnpm lint          # Check for lint errors
+pnpm build         # Full production build (type-check + Astro build + Pagefind)
+```
+
+All three must pass cleanly before pushing.

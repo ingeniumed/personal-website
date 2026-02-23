@@ -24,7 +24,7 @@ Paulo Coelho's story about a shepherd's journey to find his personal legend. It'
 
 A heartbreaking novel about a Syrian couple fleeing the war and making their way to Europe. It gave me a perspective on the refugee experience that news coverage never could. I gift this one because it builds empathy in a way that stays with you long after you finish it.
 
-## [Ikigai](https://www.goodreads.com/book/show/40534545-ikigai)
+## [Ikigai](https://www.goodreads.com/book/show/39995046-ikigai)
 
 This book explores the Japanese concept of finding your reason for being — the intersection of what you love, what you're good at, what the world needs and what you can be paid for. It's a calming read that helped me think about purpose and longevity in a more intentional way.
 

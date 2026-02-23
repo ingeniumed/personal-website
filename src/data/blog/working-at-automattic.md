@@ -20,7 +20,7 @@ This post isn't meant to be a blueprint for how you would succeed in the intervi
 
 ## The Position
 
-I work as a [Senior Software Engineer](https://automattic.com/work-with-us/job/senior-software-engineer-vip-platform/) in the VIP division. To understand what WordPress VIP is, I'll use a great line from our documentation:
+I work as a [Senior Software Engineer](https://automattic.com/work-with-us/) in the VIP division. To understand what WordPress VIP is, I'll use a great line from our documentation:
 
 > If you are a **large enterprise** with many employees, complex security requirements, and high traffic, a custom application to deploy, or a need to simply contain costs and risk, **WordPress VIP** is probably the right choice.
 >

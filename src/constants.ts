@@ -20,13 +20,13 @@ export const SOCIALS: Social[] = [
   {
     name: "GitHub",
     href: "https://github.com/ingeniumed",
-    linkTitle: `${SITE.title} on GitHub`,
+    linkTitle: `${SITE.author} on GitHub`,
     icon: IconGitHub,
   },
   {
     name: "LinkedIn",
     href: "https://au.linkedin.com/in/ingeniumed",
-    linkTitle: `${SITE.title} on LinkedIn`,
+    linkTitle: `${SITE.author} on LinkedIn`,
     icon: IconLinkedin,
   },
 ] as const;
