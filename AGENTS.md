@@ -47,7 +47,7 @@ Every post requires this frontmatter:
 ```yaml
 ---
 author: Gopal Krishnan           # Required
-pubDatetime: 2025-01-14T03:48:50Z # Required, ISO 8601
+pubDatetime: 2025-01-14T03:48:50Z # Required, ISO 8601 UTC (always use Z suffix, never timezone offsets)
 title: My Post Title               # Required
 slug: my-post-title                # Optional (auto-derived from filename)
 featured: false                    # Optional, not currently used but kept in schema

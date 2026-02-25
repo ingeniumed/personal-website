@@ -23,7 +23,7 @@ Ask the user for the following, one question at a time using AskUserQuestion:
 
 - **Location:** `src/data/blog/`
 - **Filename:** kebab-case derived from the title, with `.md` extension
-- **pubDatetime:** current time in ISO 8601 format with timezone offset for `Australia/Sydney`
+- **pubDatetime:** current time in ISO 8601 UTC format (ending with `Z`, e.g. `2025-01-14T03:48:50Z`). Do NOT use timezone offsets like `+11:00`
 - **author:** `Gopal Krishnan`
 - **slug:** same as filename without `.md`, unless the user wants something different
 
