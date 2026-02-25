@@ -177,6 +177,65 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - **OG image:** The site-level OG image is dynamically generated at `/og.png` via Satori. The `ogImage` field in `config.ts` points to `og.png`. There is no static fallback image in `public/` — if `dynamicOgImage` is set to `false`, you would need to add a static OG image manually.
 - **External links in posts:** Blog posts link to external sites (Goodreads, Automattic, YouTube, etc.). These should be periodically verified — job listing URLs and third-party blog posts can go stale over time.
 
+## Upgrading from Upstream AstroPaper
+
+The upstream AstroPaper theme lives at `/Users/gopalkrishnan/Documents/git-repos/astro-paper` (clone of https://github.com/satnaing/astro-paper). When upgrading, compare theme files between the two repos and apply changes selectively.
+
+### What to compare
+
+Focus on structural/code/styling files. Diff these directories and files between the two repos:
+- `src/components/**`
+- `src/layouts/**`
+- `src/pages/**` (excluding content-only differences)
+- `src/utils/**`, `src/lib/**`
+- `src/styles/**`
+- `src/content.config.ts`
+- `src/scripts/**`
+- `package.json` (dependencies and scripts only — name/version will differ)
+- `astro.config.ts`, `tsconfig.json`, `eslint.config.js`, `.prettierrc.mjs`
+- `.github/workflows/ci.yml`
+- `public/` (favicon, icons — not personal assets)
+
+### What to skip (personal customizations to preserve)
+
+These files have intentional customizations that should NOT be overwritten with upstream versions:
+- `src/config.ts` — personal site metadata (title, URL, author, timezone, etc.)
+- `src/constants.ts` — personal social links
+- `src/pages/index.astro` — custom avatar hero layout, single posts section (no featured/recent split)
+- `src/pages/about.astro` — custom Astro component (upstream uses `about.md`)
+- `src/layouts/Layout.astro` — enhanced SEO structured data (BlogPosting vs Person schema, og:type, og:site_name, article:author)
+- `src/components/Socials.astro` — has `rel="me"` for IndieWeb/Mastodon verification
+- `src/components/Footer.astro` — includes personal name in copyright
+- `src/components/Header.astro` — hardcodes site title as "Gopal Krishnan"
+- `src/pages/posts/[...page].astro` — custom description meta
+
+### Intentionally removed upstream features
+
+These upstream features have been deliberately excluded and should NOT be re-added during upgrades:
+- **Tags pages** (`src/pages/tags/`) — Gopal does not want tag browsing; search and all-posts are the discovery mechanisms
+- **Tags nav link** in Header — removed along with tags pages
+- **Tags display in PostDetails** — not shown at bottom of posts
+- **Archives page** (`src/pages/archives/`) — `showArchives` is set to `false` in config
+- **Featured/recent post split** on homepage — uses a single flat "Posts" section instead
+
+### Upstream-only files to ignore
+
+These exist in the upstream repo but are not needed in the personal site:
+- `.dockerignore`, `Dockerfile`, `docker-compose.yml`
+- `.github/CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `FUNDING.yml`, issue/PR templates
+- `.vscode/` workspace settings
+- `AstroPaper-lighthouse-score.svg`, `CHANGELOG.md`, `cz.yaml`
+- `public/astropaper-og.jpg` and demo images in `src/assets/images/AstroPaper-v*.png`
+- Demo blog posts in `src/data/blog/`
+
+### Upgrade process
+
+1. Pull the latest upstream: `cd /Users/gopalkrishnan/Documents/git-repos/astro-paper && git pull`
+2. Diff shared theme files between the two repos (exclude files listed in "skip" and "removed" sections above)
+3. For each difference, determine if it's a theme improvement to adopt or a personal customization to keep
+4. Apply theme improvements to the personal website
+5. Run `pnpm build` to verify nothing is broken
+
 ## Pre-Launch / Pre-Deploy Checklist
 
 Before deploying, always run:
