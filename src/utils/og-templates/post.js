@@ -1,6 +1,5 @@
 import satori from "satori";
 // import { html } from "satori-html";
-import { SITE } from "@/config";
 import loadGoogleFonts from "../loadGoogleFont";
 
 // const markup = html`<div
@@ -168,42 +167,26 @@ export default async post => {
                       props: {
                         style: {
                           display: "flex",
-                          justifyContent: "space-between",
                           width: "100%",
                           marginBottom: "8px",
                           fontSize: 28,
                         },
                         children: [
+                          "by ",
                           {
                             type: "span",
                             props: {
-                              children: [
-                                "by ",
-                                {
-                                  type: "span",
-                                  props: {
-                                    style: { color: "transparent" },
-                                    children: '"',
-                                  },
-                                },
-                                {
-                                  type: "span",
-                                  props: {
-                                    style: {
-                                      overflow: "hidden",
-                                      fontWeight: "bold",
-                                    },
-                                    children: post.data.author,
-                                  },
-                                },
-                              ],
+                              style: { color: "transparent" },
+                              children: '"',
                             },
                           },
                           {
                             type: "span",
                             props: {
-                              style: { overflow: "hidden", fontWeight: "bold" },
-                              children: SITE.title,
+                              style: {
+                                fontWeight: "bold",
+                              },
+                              children: post.data.author,
                             },
                           },
                         ],
@@ -221,9 +204,7 @@ export default async post => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(
-        post.data.title + post.data.author + SITE.title + "by"
-      ),
+      fonts: await loadGoogleFonts(post.data.title + post.data.author + "by"),
     }
   );
 };
