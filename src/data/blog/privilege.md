@@ -1,7 +1,7 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2023-06-26T06:34:14Z
-title: "Privilege — Reflections on Dream Jobs"
+title: "Privilege: Reflections on Dream Jobs"
 slug: privilege
 featured: false
 tags:
@@ -9,7 +9,7 @@ tags:
 description: "Watching President Obama's documentary series on the hierarchy of work made me reflect on how privileged my career in tech really is."
 ---
 
-Ever since my wife and I saw the new documentary series hosted by President Barack Obama, I have had this word stuck in my head — privilege. In the series, the president explores different job tiers through the lens of someone working a job that fits in that tier.
+Ever since my wife and I saw the new documentary series hosted by President Barack Obama, I have had this word stuck in my head: privilege. In the series, the president explores different job tiers through the lens of someone working a job that fits in that tier.
 
 The hierarchy that they follow is:
 

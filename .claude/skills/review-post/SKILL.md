@@ -46,7 +46,7 @@ Apply the known grammar patterns from AGENTS.md:
 - "how it's like" should be "what it's like"
 - Preposition choices ("from the lens" → "through the lens", "information around" → "information on/about")
 - Compound adjectives before nouns should be hyphenated
-- Hyphens where em dashes (—) are more appropriate
+- Em dashes (—) should never be used (classic AI tell). Replace with commas, colons, periods, or parentheses
 - Long sentences that could be broken up for readability
 
 Also check for:
