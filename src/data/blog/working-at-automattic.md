@@ -1,13 +1,13 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2022-08-05T04:06:56Z
-title: "Working at Automattic — The Interview Process"
+title: "Working at Automattic: The Interview Process"
 slug: working-at-automattic
 featured: true
 tags:
   - automattic
   - work
-description: "A detailed breakdown of the Automattic interview process — from the recruiter chat and Slack interview to the code test, paid trial, and the final offer."
+description: "A detailed breakdown of the Automattic interview process, from the recruiter chat and Slack interview to the code test, paid trial, and the final offer."
 ---
 
 ## Table of contents
@@ -24,7 +24,7 @@ I work as a [Senior Software Engineer](https://automattic.com/work-with-us/) in 
 
 > If you are a **large enterprise** with many employees, complex security requirements, and high traffic, a custom application to deploy, or a need to simply contain costs and risk, **WordPress VIP** is probably the right choice.
 >
-> — [https://wpvip.com/wordpress-org-vs-wordpress-com-vs-wordpress-vip/](https://wpvip.com/wordpress-org-vs-wordpress-com-vs-wordpress-vip/)
+> - [https://wpvip.com/wordpress-org-vs-wordpress-com-vs-wordpress-vip/](https://wpvip.com/wordpress-org-vs-wordpress-com-vs-wordpress-vip/)
 
 With that, let's jump into the interview process.
 
@@ -82,7 +82,7 @@ Just like the code test, you get to pick if you want to do a front-end or back-e
 
 > If it's not on P2, then it didn't happen.
 >
-> — The golden rule to follow when it comes to decisions
+> - The golden rule to follow when it comes to decisions
 
 It's going to feel like a big change having to use a blog to communicate your decisions, progress, as well as any blockers you have rather than a daily standup or a meeting. That's part of the process, so embrace it and remember, there is no such thing as over-communicating, or being too detailed.
 

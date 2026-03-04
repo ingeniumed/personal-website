@@ -7,7 +7,7 @@ featured: true
 tags:
   - personal
   - lists
-description: "Continuing my annual reading tradition — every book I read in 2025, from Sapiens and Meditations to Dungeon Crawler Carl and Siddhartha."
+description: "Continuing my annual reading tradition, every book I read in 2025, from Sapiens and Meditations to Dungeon Crawler Carl and Siddhartha."
 ---
 
 Continuing my annual tradition from [last year's post](/posts/books-i-read-in-2024), here are the books that defined my 2025.

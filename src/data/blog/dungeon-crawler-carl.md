@@ -7,7 +7,7 @@ featured: false
 tags:
   - personal
   - books
-description: A recommendation for the Dungeon Crawler Carl audiobook series — all 7 books, and why you should check it out.
+description: A recommendation for the Dungeon Crawler Carl audiobook series, all 7 books, and why you should check it out.
 ---
 
 [Dungeon Crawler Carl](https://www.goodreads.com/series/309211-dungeon-crawler-carl) is a book series that I had been recommended for years now, but I kept putting it off because I lost my habit of reading. After resuming my reading habit in [2024](/posts/books-i-read-in-2024), I finally managed to pick up book 1 [last year](/posts/books-i-read-in-2025). I had started with the Kindle edition as that felt like an easy way for me to read it every night. I wasn't hooked right away, which disappointed me as I was so excited to read a book that'd remind me of a good old RPG.

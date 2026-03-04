@@ -154,7 +154,7 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - "how it's like" should be "what it's like"
 - Preposition choices: "from the lens" → "through the lens", "information around" → "information on/about"
 - Compound adjectives before nouns should be hyphenated (e.g. "hand-wavy", "front-end", "back-end")
-- Uses hyphens where em dashes (—) are more appropriate for parenthetical asides
+- Never use em dashes (—) as they are a classic tell of AI-generated writing. Use commas, colons, periods, or parentheses instead
 - Long sentences can sometimes be broken into two for readability, especially when listing many items
 
 **Privacy:**
