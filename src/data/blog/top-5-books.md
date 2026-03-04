@@ -7,14 +7,14 @@ featured: false
 tags:
   - personal
   - lists
-description: "Inspired by Tim Ferriss's classic interview question, here are the five books I gift every year — from The Alchemist to Steve Jobs."
+description: "Inspired by Tim Ferriss's classic interview question, here are the five books I gift every year, from The Alchemist to Steve Jobs."
 ---
 
 One of Tim Ferriss's favourite interviewing techniques is to ask his guests:
 
 > What are the top 5 books that you gift every year?
 
-It's a unique way to ask about someone's favourite books, because you wouldn't frequently gift a book that wasn't one. It prompted me to think about how I would answer this question. So here it is — each of these books has had an impact on my life, and I revisit them every year.
+It's a unique way to ask about someone's favourite books, because you wouldn't frequently gift a book that wasn't one. It prompted me to think about how I would answer this question. So here it is. Each of these books has had an impact on my life, and I revisit them every year.
 
 ## [The Alchemist](https://www.goodreads.com/book/show/18144590-the-alchemist)
 
@@ -26,7 +26,7 @@ A heartbreaking novel about a Syrian couple fleeing the war and making their way
 
 ## [Ikigai](https://www.goodreads.com/book/show/39995046-ikigai)
 
-This book explores the Japanese concept of finding your reason for being — the intersection of what you love, what you're good at, what the world needs and what you can be paid for. It's a calming read that helped me think about purpose and longevity in a more intentional way.
+This book explores the Japanese concept of finding your reason for being, the intersection of what you love, what you're good at, what the world needs and what you can be paid for. It's a calming read that helped me think about purpose and longevity in a more intentional way.
 
 ## [The Four Hour Work Week](https://www.goodreads.com/book/show/9278897-the-4-hour-work-week)
 

@@ -1,7 +1,7 @@
 ---
 author: Gopal Krishnan
 pubDatetime: 2025-06-07T09:08:22Z
-title: "Parenting — A New Dad's Perspective"
+title: "Parenting: A New Dad's Perspective"
 slug: parenting
 featured: false
 tags:

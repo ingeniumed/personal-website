@@ -8,7 +8,7 @@ tags:
   - personal
   - lists
   - "2024"
-description: "My 2024 reading list, from Steve Jobs to Project Hail Mary — reignited by Audible after becoming a new dad and finding new pockets of time."
+description: "My 2024 reading list, from Steve Jobs to Project Hail Mary. Reignited by Audible after becoming a new dad and finding new pockets of time."
 ---
 
 ## Table of contents
