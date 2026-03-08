@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(TZ=Australia/Sydney date:*)"
+      "Bash(TZ=Australia/Sydney date:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
