@@ -29,23 +29,19 @@ async function loadGoogleFont(
   return res.arrayBuffer();
 }
 
-async function loadGoogleFonts(
-  text: string
-): Promise<
-  Array<{ name: string; data: ArrayBuffer; weight: number; style: string }>
-> {
+async function loadGoogleFonts(text: string) {
   const fontsConfig = [
     {
       name: "IBM Plex Mono",
       font: "IBM+Plex+Mono",
-      weight: 400,
-      style: "normal",
+      weight: 400 as const,
+      style: "normal" as const,
     },
     {
       name: "IBM Plex Mono",
       font: "IBM+Plex+Mono",
-      weight: 700,
-      style: "bold",
+      weight: 700 as const,
+      style: "normal" as const,
     },
   ];
 
