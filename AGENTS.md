@@ -169,6 +169,10 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - Common tags: `personal`, `lists`, `work`, `automattic`
 - Year tags (e.g. `2024`) used for annual list posts
 
+## Code Style
+
+- **Always write TypeScript (`.ts`) over JavaScript (`.js`)** for new files. The project uses `astro/tsconfigs/strict`.
+
 ## Important Notes
 
 - **No SSR:** This is a fully static site. Do not add the `@astrojs/cloudflare` adapter unless switching to SSR.

@@ -1,8 +1,8 @@
+import type { CollectionEntry } from "astro:content";
 import satori from "satori";
-import { SITE } from "@/config";
 import loadGoogleFonts from "../loadGoogleFont";
 
-export default async () => {
+export default async function postOgImage(post: CollectionEntry<"blog">) {
   return satori(
     {
       type: "div",
@@ -61,34 +61,15 @@ export default async () => {
                   },
                   children: [
                     {
-                      type: "div",
+                      type: "p",
                       props: {
                         style: {
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          height: "90%",
-                          maxHeight: "90%",
+                          fontSize: 72,
+                          fontWeight: "bold",
+                          maxHeight: "84%",
                           overflow: "hidden",
-                          textAlign: "center",
                         },
-                        children: [
-                          {
-                            type: "p",
-                            props: {
-                              style: { fontSize: 72, fontWeight: "bold" },
-                              children: SITE.title,
-                            },
-                          },
-                          {
-                            type: "p",
-                            props: {
-                              style: { fontSize: 28 },
-                              children: SITE.desc,
-                            },
-                          },
-                        ],
+                        children: post.data.title,
                       },
                     },
                     {
@@ -96,18 +77,29 @@ export default async () => {
                       props: {
                         style: {
                           display: "flex",
-                          justifyContent: "flex-end",
                           width: "100%",
                           marginBottom: "8px",
                           fontSize: 28,
                         },
-                        children: {
-                          type: "span",
-                          props: {
-                            style: { overflow: "hidden", fontWeight: "bold" },
-                            children: new URL(SITE.website).hostname,
+                        children: [
+                          "by ",
+                          {
+                            type: "span",
+                            props: {
+                              style: { color: "transparent" },
+                              children: '"',
+                            },
                           },
-                        },
+                          {
+                            type: "span",
+                            props: {
+                              style: {
+                                fontWeight: "bold",
+                              },
+                              children: post.data.author,
+                            },
+                          },
+                        ],
                       },
                     },
                   ],
@@ -122,7 +114,7 @@ export default async () => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(SITE.title + SITE.desc + SITE.website),
+      fonts: await loadGoogleFonts(post.data.title + post.data.author + "by"),
     }
   );
-};
+}
