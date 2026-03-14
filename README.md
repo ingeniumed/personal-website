@@ -4,7 +4,7 @@ Source code for [gkrishnan.blog](https://gkrishnan.blog/) — my personal blog.
 
 ## Tech Stack
 
-- [Astro](https://astro.build/) v5 — static site generator
+- [Astro](https://astro.build/) v6 — static site generator
 - [Tailwind CSS](https://tailwindcss.com/) v4 — styling
 - [Pagefind](https://pagefind.app/) — client-side static search
 - [Satori](https://github.com/vercel/satori) — dynamic OG image generation at build time
@@ -18,7 +18,7 @@ Deployed as a static site on [Cloudflare Pages](https://pages.cloudflare.com/). 
 
 ## Getting Started
 
-**Prerequisites:** Node.js 18+ and pnpm.
+**Prerequisites:** Node.js 22+ and pnpm.
 
 ```bash
 # Install dependencies

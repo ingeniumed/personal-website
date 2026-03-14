@@ -6,8 +6,9 @@ This is the source for [gkrishnan.blog](https://gkrishnan.blog/), Gopal Krishnan
 
 ## Tech Stack
 
-- **Framework:** Astro 5
+- **Framework:** Astro 6
 - **Styling:** Tailwind CSS 4
+- **Node.js:** 22+ (see `.nvmrc`)
 - **Search:** Pagefind (client-side static search, indexed at build time)
 - **OG Images:** Auto-generated at build time via Satori + resvg (requires internet access to fetch Google Fonts)
 - **Package Manager:** pnpm (see `pnpm-lock.yaml`), though npm also works
@@ -123,6 +124,8 @@ A GitHub Actions workflow (`.github/workflows/ci.yml`) runs automatically on eve
 4. Runs a full production build (`pnpm run build`)
 
 The site is deployed to Cloudflare Pages. Pushes to `main` trigger a deploy automatically.
+
+**Important:** When upgrading Node.js or other runtime versions, always update the CI workflow matrix (`node-version` in `.github/workflows/ci.yml`), `.nvmrc`, and `README.md` prerequisites to match.
 
 ## Writing Style & Content Preferences
 
