@@ -53,9 +53,6 @@ title: My Post Title               # Required
 slug: my-post-title                # Optional (auto-derived from filename)
 featured: false                    # Optional, not currently used but kept in schema
 draft: false                       # Optional, hides post when true
-tags:                              # Optional, defaults to ["others"]
-  - personal
-  - lists
 description: A short description   # Required, used for SEO meta + post excerpts
 ogImage: ./path-to-image.png       # Optional, auto-generated if omitted
 canonicalURL: https://...          # Optional, for cross-posted content
@@ -94,7 +91,7 @@ The About page. Uses Astro's `<Image>` component for the profile photo (auto-opt
 The homepage. Has a short hero section with social links, followed by a single chronological "Posts" section (showing `postPerIndex` most recent posts) and an "All Posts" link.
 
 ### Removed pages
-Tags (`/tags`) and Archives (`/archives`) have been intentionally removed. Tags are still stored in post frontmatter but are not displayed or linked anywhere on the site.
+Tags (`/tags`) and Archives (`/archives`) have been intentionally removed. Tags have been fully removed from the schema and posts.
 
 ## Build & Development
 
@@ -161,13 +158,8 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - Long sentences can sometimes be broken into two for readability, especially when listing many items
 
 **Privacy:**
-- Never include Gopal's email address anywhere on the site
+- Never include Gopal's email address anywhere on the site (exception: the resume PDF in `public/resume.pdf` may contain it, since it is a static document intended for professional use)
 - No last names for family members (refers to "my wife", "my son", "my parents", "my brother")
-
-**Tags:**
-- Lowercase
-- Common tags: `personal`, `lists`, `work`, `automattic`
-- Year tags (e.g. `2024`) used for annual list posts
 
 ## Code Style
 
@@ -180,13 +172,12 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - **OG image generation requires internet:** The build fetches Google Fonts (Google Sans Code) for dynamic OG images. If building offline, set `dynamicOgImage: false` in `config.ts`.
 - **Legacy draft posts:** There are some old AstroPaper sample posts still in `src/data/blog/` marked with `draft: true`. These are invisible on the site and can be safely deleted.
 - **Existing blog:** This site was migrated from a WordPress blog at gkrishnan.blog in February 2026. The WordPress export XML is not included in the repo.
-- **Tag quoting in frontmatter:** Numeric tag values (e.g. `2024`) must be quoted as strings (`"2024"`) in YAML frontmatter — the Zod content schema validates tags as `string[]`, and unquoted YAML numbers will fail the build.
 - **OG image:** The site-level OG image is dynamically generated at `/og.png` via Satori. The `ogImage` field in `config.ts` points to `og.png`. There is no static fallback image in `public/` — if `dynamicOgImage` is set to `false`, you would need to add a static OG image manually.
 - **External links in posts:** Blog posts link to external sites (Goodreads, Automattic, YouTube, etc.). These should be periodically verified — job listing URLs and third-party blog posts can go stale over time.
 
 ## Upgrading from Upstream AstroPaper
 
-The upstream AstroPaper theme lives at `/Users/gopalkrishnan/Documents/git-repos/astro-paper` (clone of https://github.com/satnaing/astro-paper). When upgrading, compare theme files between the two repos and apply changes selectively.
+The upstream AstroPaper theme lives in a local clone of https://github.com/satnaing/astro-paper. When upgrading, compare theme files between the two repos and apply changes selectively.
 
 ### What to compare
 
@@ -219,9 +210,7 @@ These files have intentional customizations that should NOT be overwritten with 
 ### Intentionally removed upstream features
 
 These upstream features have been deliberately excluded and should NOT be re-added during upgrades:
-- **Tags pages** (`src/pages/tags/`) — Gopal does not want tag browsing; search and all-posts are the discovery mechanisms
-- **Tags nav link** in Header — removed along with tags pages
-- **Tags display in PostDetails** — not shown at bottom of posts
+- **Tags** — entirely removed (pages, nav link, schema field, frontmatter, display in PostDetails). Search and all-posts are the discovery mechanisms
 - **Archives page** (`src/pages/archives/`) — `showArchives` is set to `false` in config
 - **Featured/recent post split** on homepage — uses a single flat "Posts" section instead
 
@@ -237,7 +226,7 @@ These exist in the upstream repo but are not needed in the personal site:
 
 ### Upgrade process
 
-1. Pull the latest upstream: `cd /Users/gopalkrishnan/Documents/git-repos/astro-paper && git pull`
+1. Pull the latest upstream: `cd <path-to-astro-paper-clone> && git pull`
 2. Diff shared theme files between the two repos (exclude files listed in "skip" and "removed" sections above)
 3. For each difference, determine if it's a theme improvement to adopt or a personal customization to keep
 4. Apply theme improvements to the personal website

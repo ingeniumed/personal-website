@@ -4,9 +4,6 @@ pubDatetime: 2023-10-25T22:50:06Z
 title: Top 5 Books I Gift Every Year
 slug: top-5-books
 featured: false
-tags:
-  - personal
-  - lists
 description: "Inspired by Tim Ferriss's classic interview question, here are the five books I gift every year, from The Alchemist to Steve Jobs."
 ---
 
