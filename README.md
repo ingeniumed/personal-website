@@ -1,13 +1,13 @@
 # personal-website
 
-Source code for [gkrishnan.blog](https://gkrishnan.blog/) — my personal blog.
+Source code for my [my personal blog](https://gkrishnan.blog/).
 
 ## Tech Stack
 
-- [Astro](https://astro.build/) v6 — static site generator
-- [Tailwind CSS](https://tailwindcss.com/) v4 — styling
-- [Pagefind](https://pagefind.app/) — client-side static search
-- [Satori](https://github.com/vercel/satori) — dynamic OG image generation at build time
+- [Astro](https://astro.build/): static site generator
+- [Tailwind CSS](https://tailwindcss.com/): styling
+- [Pagefind](https://pagefind.app/): client-side static search
+- [Satori](https://github.com/vercel/satori): dynamic OG image generation at build time
 - [TypeScript](https://www.typescriptlang.org/)
 
 Based on the [AstroPaper](https://github.com/satnaing/astro-paper) theme.
