@@ -4,8 +4,6 @@ pubDatetime: 2023-06-26T06:34:14Z
 title: "Privilege: Reflections on Dream Jobs"
 slug: privilege
 featured: false
-tags:
-  - personal
 description: "Watching President Obama's documentary series on the hierarchy of work made me reflect on how privileged my career in tech really is."
 ---
 

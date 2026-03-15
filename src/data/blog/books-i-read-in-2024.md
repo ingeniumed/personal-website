@@ -4,10 +4,6 @@ pubDatetime: 2025-01-14T03:48:50Z
 title: Every Book I Read in 2024
 slug: books-i-read-in-2024
 featured: false
-tags:
-  - personal
-  - lists
-  - "2024"
 description: "My 2024 reading list, from Steve Jobs to Project Hail Mary. Reignited by Audible after becoming a new dad and finding new pockets of time."
 ---
 
