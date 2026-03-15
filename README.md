@@ -47,8 +47,6 @@ pubDatetime: 2026-01-05T03:05:04Z
 title: My Post Title
 slug: my-post-title
 featured: false
-tags:
-  - personal
 description: A short description for SEO and post excerpts.
 ---
 Post content in Markdown goes here.
@@ -78,3 +76,7 @@ public/
 ## CI
 
 A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every pull request. It lints, checks formatting, and runs a full production build.
+
+## License
+
+The source code is licensed under the [MIT License](LICENSE). Blog content (`src/data/blog/`), images (`src/assets/images/`), and the resume (`public/resume.pdf`) are copyright Gopal Krishnan, all rights reserved.
