@@ -11,7 +11,7 @@ This is the source for [gkrishnan.blog](https://gkrishnan.blog/), Gopal Krishnan
 - **Node.js:** 22+ (see `.nvmrc`)
 - **Search:** Pagefind (client-side static search, indexed at build time)
 - **OG Images:** Auto-generated at build time via Satori + resvg (requires internet access to fetch Google Fonts)
-- **Package Manager:** pnpm (see `pnpm-lock.yaml`), though npm also works
+- **Package Manager:** pnpm (see `pnpm-lock.yaml`). Always use pnpm — do not use npm.
 - **Deployment:** Cloudflare Pages (static output)
 
 ## Project Structure
@@ -74,7 +74,7 @@ timezone: Australia/Sydney          # Optional, overrides site default
 ### Draft & Scheduled Posts
 - `draft: true` hides a post entirely
 - A future `pubDatetime` hides the post in production until 15 minutes before the publish time
-- In dev mode (`npm run dev`), all non-draft posts are visible regardless of date
+- In dev mode (`pnpm dev`), all non-draft posts are visible regardless of date
 
 ## Key Configuration Files
 
@@ -97,16 +97,16 @@ Tags (`/tags`) and Archives (`/archives`) have been intentionally removed. Tags 
 
 ```bash
 # Install dependencies
-pnpm install    # or npm install
+pnpm install
 
 # Local dev server
-pnpm dev        # or npm run dev
+pnpm dev
 
 # Production build (includes type-check, Astro build, and Pagefind indexing)
-pnpm build      # or npm run build
+pnpm build
 
 # Preview production build
-pnpm preview    # or npm run preview
+pnpm preview
 ```
 
 The build command runs: `astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/`
