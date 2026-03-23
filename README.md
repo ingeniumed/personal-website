@@ -73,9 +73,18 @@ public/
 └── og.png            # Generated dynamically by Satori at build time
 ```
 
+## Testing
+
+Unit tests are written with [Vitest](https://vitest.dev/). Test files live alongside their source files (e.g. `slugify.ts` / `slugify.test.ts`).
+
+```bash
+pnpm test          # Run all tests once
+pnpm test:watch    # Watch mode for local development
+```
+
 ## CI
 
-A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every pull request. It lints, checks formatting, and runs a full production build.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every pull request. It lints, checks formatting, runs the unit test suite, and runs a full production build.
 
 ## License
 

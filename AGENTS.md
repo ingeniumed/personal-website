@@ -232,6 +232,45 @@ These exist in the upstream repo but are not needed in the personal site:
 4. Apply theme improvements to the personal website
 5. Run `pnpm build` to verify nothing is broken
 
+## Testing
+
+Unit tests are written with [Vitest](https://vitest.dev/) and cover the core utility functions in `src/utils/`.
+
+```bash
+pnpm test          # Run all tests once (CI mode)
+pnpm test:watch    # Watch mode for local development
+```
+
+### Test configuration — `vitest.config.ts`
+
+Uses Astro's `getViteConfig()` helper so the test environment inherits the project's Astro/Vite settings (including path aliases like `@/*`). Key override:
+
+- `test.env.DEV: ""` — Vitest runs Vite in `"test"` mode which sets `import.meta.env.DEV = "1"` (truthy). This override forces it to a falsy value so tests exercise the production-like path inside `postFilter`, where date-based scheduling is enforced rather than bypassed.
+
+### What is tested
+
+Test files live **alongside their source files** (e.g. `slugify.ts` / `slugify.test.ts`).
+
+| File | Covers |
+|------|--------|
+| `src/utils/slugify.test.ts` | `slugifyStr` — URL slug generation |
+| `src/utils/getPath.test.ts` | `getPath` — subdirectory paths, underscore exclusion, slug extraction, base path toggle |
+| `src/utils/postFilter.test.ts` | `postFilter` — draft filtering, publish time, scheduled post margin boundary |
+| `src/utils/getSortedPosts.test.ts` | `getSortedPosts` — sorting by pub/mod date, draft + future post filtering, sort stability |
+| `src/utils/remark/remarkTocCollapse.test.ts` | `remarkTocCollapse` — TOC trigger detection (incl. rich-text headings), details/summary structure, list nesting, slug deduplication |
+
+### Mocking notes
+
+- `@/content.config` is mocked via `vi.mock()` in `getPath.test.ts` to avoid pulling in Astro virtual modules (`astro:content`, `astro/loaders`) that are unavailable in a plain Node environment.
+- `astro:content` itself doesn't need mocking — all imports from it are `import type` statements that are erased at runtime.
+- Fake timers (`vi.useFakeTimers` / `vi.setSystemTime`) are used in `postFilter` and `getSortedPosts` tests to control `Date.now()` for date-sensitive assertions.
+
+### Adding new tests
+
+- Test files live **next to their source file** in the same directory — not in a separate `__tests__/` folder.
+- Follow the existing naming pattern: `<module>.test.ts`.
+- Keep tests focused on logic that can be exercised without Astro's build pipeline (utilities, pure functions, remark plugins). Component tests and route tests are better suited for e2e/integration tests (not yet set up).
+
 ## Pre-Launch / Pre-Deploy Checklist
 
 Before deploying, always run:
@@ -239,7 +278,8 @@ Before deploying, always run:
 ```bash
 pnpm format        # Fix formatting
 pnpm lint          # Check for lint errors
+pnpm test          # Unit tests
 pnpm build         # Full production build (type-check + Astro build + Pagefind)
 ```
 
-All three must pass cleanly before pushing.
+All four must pass cleanly before pushing.
