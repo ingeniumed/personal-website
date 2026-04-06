@@ -175,62 +175,23 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines i
 - **OG image:** The site-level OG image is dynamically generated at `/og.png` via Satori. The `ogImage` field in `config.ts` points to `og.png`. There is no static fallback image in `public/` — if `dynamicOgImage` is set to `false`, you would need to add a static OG image manually.
 - **External links in posts:** Blog posts link to external sites (Goodreads, Automattic, YouTube, etc.). These should be periodically verified — job listing URLs and third-party blog posts can go stale over time.
 
-## Upgrading from Upstream AstroPaper
+## Relationship to AstroPaper
 
-The upstream AstroPaper theme lives in a local clone of https://github.com/satnaing/astro-paper. When upgrading, compare theme files between the two repos and apply changes selectively.
+This project was originally based on the [AstroPaper](https://github.com/satnaing/astro-paper) v5 theme but is now independently maintained. Changes from the upstream repo are **not** pulled or reconciled. The project runs **Astro 6** while upstream is still on **Astro 5**, making upstream code potentially incompatible (v5 APIs may have changed or been removed in v6). Beyond the framework version, the project has also removed features (tags, archives), added custom layouts, converted to TypeScript throughout, and upgraded to Tailwind CSS 4.
 
-### What to compare
+### Maintenance approach
 
-Focus on structural/code/styling files. Diff these directories and files between the two repos:
-- `src/components/**`
-- `src/layouts/**`
-- `src/pages/**` (excluding content-only differences)
-- `src/utils/**`, `src/lib/**`
-- `src/styles/**`
-- `src/content.config.ts`
-- `src/scripts/**`
-- `package.json` (dependencies and scripts only — name/version will differ)
-- `astro.config.ts`, `tsconfig.json`, `eslint.config.js`, `.prettierrc.mjs`
-- `.github/workflows/ci.yml`
-- `public/` (favicon, icons — not personal assets)
-
-### What to skip (personal customizations to preserve)
-
-These files have intentional customizations that should NOT be overwritten with upstream versions:
-- `src/config.ts` — personal site metadata (title, URL, author, timezone, etc.)
-- `src/constants.ts` — personal social links
-- `src/pages/index.astro` — custom avatar hero layout, single posts section (no featured/recent split)
-- `src/pages/about.astro` — custom Astro component (upstream uses `about.md`)
-- `src/layouts/Layout.astro` — enhanced SEO structured data (BlogPosting vs Person schema, og:type, og:site_name, article:author)
-- `src/components/Socials.astro` — has `rel="me"` for IndieWeb/Mastodon verification
-- `src/components/Footer.astro` — includes personal name in copyright
-- `src/components/Header.astro` — hardcodes site title as "Gopal Krishnan"
-- `src/pages/posts/[...page].astro` — custom description meta
+- **Dependencies:** Keep deps up to date with `pnpm update`. Security patches go in `pnpm.overrides` in `package.json` when transitive deps lag behind.
+- **TypeScript:** All new code should be TypeScript. Convert remaining JS files to TS when touching them.
+- **Unused dependencies:** Drop packages that are no longer needed rather than carrying dead weight.
+- **No upstream sync:** Do not attempt to pull, diff, or merge changes from the upstream AstroPaper repo.
 
 ### Intentionally removed upstream features
 
-These upstream features have been deliberately excluded and should NOT be re-added during upgrades:
+These upstream features have been deliberately excluded and should NOT be re-added:
 - **Tags** — entirely removed (pages, nav link, schema field, frontmatter, display in PostDetails). Search and all-posts are the discovery mechanisms
 - **Archives page** (`src/pages/archives/`) — `showArchives` is set to `false` in config
 - **Featured/recent post split** on homepage — uses a single flat "Posts" section instead
-
-### Upstream-only files to ignore
-
-These exist in the upstream repo but are not needed in the personal site:
-- `.dockerignore`, `Dockerfile`, `docker-compose.yml`
-- `.github/CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `FUNDING.yml`, issue/PR templates
-- `.vscode/` workspace settings
-- `AstroPaper-lighthouse-score.svg`, `CHANGELOG.md`, `cz.yaml`
-- `public/astropaper-og.jpg` and demo images in `src/assets/images/AstroPaper-v*.png`
-- Demo blog posts in `src/data/blog/`
-
-### Upgrade process
-
-1. Pull the latest upstream: `cd <path-to-astro-paper-clone> && git pull`
-2. Diff shared theme files between the two repos (exclude files listed in "skip" and "removed" sections above)
-3. For each difference, determine if it's a theme improvement to adopt or a personal customization to keep
-4. Apply theme improvements to the personal website
-5. Run `pnpm build` to verify nothing is broken
 
 ## Testing
 
