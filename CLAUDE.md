@@ -70,11 +70,17 @@ pnpm format:check     # Prettier check
 pnpm format           # Prettier fix
 pnpm test             # Vitest (run once)
 pnpm test:watch       # Vitest (watch mode)
+pnpm build && pnpm test:e2e   # Playwright e2e tests (must build first — Pagefind search requires built index; tests live in e2e-tests/)
+pnpm test:e2e:ui      # Playwright UI mode (interactive debugging)
 ```
 
 Build runs: `astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/`
 
 Pre-deploy checklist: `pnpm format && pnpm lint && pnpm test && pnpm build` — all must pass.
+
+**e2e tests require a prior `pnpm build`** — they run against `pnpm preview` (the static build output). Pagefind search only works once the index is built.
+
+**404 page behaviour note:** Astro's local preview server may redirect unknown URLs to `index.html` rather than `404.html`. The e2e tests navigate directly to `/404` to sidestep this. On Cloudflare Pages (current host), unknown paths correctly serve `404.html` automatically — but this behaviour is host-specific. If you ever switch providers, verify your host also serves `404.html` for unknown paths and update the test comment in `e2e-tests/404.spec.ts` accordingly.
 
 ## Blog Post Frontmatter
 
@@ -150,11 +156,43 @@ Cloudflare Pages. Pushes to `main` trigger automatic deployment. The site is ful
 
 ## Content Guidelines
 
-See the "Writing Style & Content Preferences" section in `AGENTS.md` for detailed tone, structure, grammar, and privacy guidelines when creating or editing blog posts.
+When creating or editing blog posts on Gopal's behalf, follow these guidelines.
+
+**Tone & Voice:**
+- Conversational and personal — like talking to a friend, not writing an essay
+- First person throughout
+- Warm but not overly casual. No slang, no emojis
+- Comfortable being vulnerable and reflective (sharing personal experiences, crediting family)
+
+**Structure:**
+- Use horizontal rules (`---`) as section dividers in longer posts
+- Clear headings for structure, but don't over-structure short reflections
+- Posts range from short personal reflections (~4 paragraphs) to longer walkthroughs with multiple sections — match the format to the content
+- Bullet and numbered lists are used frequently, especially for book lists and step-by-step breakdowns
+
+**Content habits:**
+- Links generously to external references (Goodreads for books, company sites, other people's blog posts)
+- Gives credit where it's due (colleagues, wife, parents, other bloggers)
+- Recurring themes: books/reading, work/career at Automattic, parenting, personal growth
+- Annual "Books I read in [year]" post is an ongoing tradition
+- Blockquotes are used for notable quotes, with attribution
+
+**Grammar habits to watch for when reviewing drafts:**
+- Avoid unnecessary commas before "and" in compound predicates (e.g. "I signed up for X, and realized" → "I signed up for X and realized"). A comma before "and" is only needed when joining two independent clauses (each with its own subject)
+- Watch for commas after introductory subjects rather than after introductory clauses (e.g. "after you apply, is" → "after you apply is")
+- Watch for "it's" vs "its" — possessive "its" has no apostrophe
+- "how it's like" should be "what it's like"
+- Preposition choices: "from the lens" → "through the lens", "information around" → "information on/about"
+- Compound adjectives before nouns should be hyphenated (e.g. "hand-wavy", "front-end", "back-end")
+- **Never use em dashes (—)** — they are a classic tell of AI-generated writing. Use commas, colons, periods, or parentheses instead
+- Long sentences can sometimes be broken into two for readability, especially when listing many items
+
+**Privacy:**
+- Never include Gopal's email address anywhere on the site (exception: the resume PDF in `public/resume.pdf` may contain it, since it is a static document intended for professional use)
+- No last names for family members (refers to "my wife", "my son", "my parents", "my brother")
 
 ## Areas of Improvement
 
-- **No e2e/integration tests.** Only unit tests for utility functions exist. Component and route-level tests are not set up.
 - **No automated link checking.** Blog posts link to external sites (Goodreads, job listings, YouTube) that can go stale over time.
 - **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/data/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
