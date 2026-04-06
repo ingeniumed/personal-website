@@ -45,12 +45,12 @@ test.describe("Navigation & Layout", () => {
     // Use href-based selector — the nav link is href="/posts" (no trailing slash)
     await page.locator('header a[href="/posts"]').click();
     await page.waitForURL(/\/posts/);
-    await expect(page.url()).toMatch(/\/posts/);
+    expect(page.url()).toMatch(/\/posts/);
   });
 
   test("navigating to About page works", async ({ page }) => {
     await page.locator('header a[href="/about"]').click();
     await page.waitForURL(/\/about/);
-    await expect(page.url()).toMatch(/\/about/);
+    expect(page.url()).toMatch(/\/about/);
   });
 });
