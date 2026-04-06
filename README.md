@@ -69,8 +69,8 @@ src/
 └── utils/            # Helpers for sorting, filtering, OG generation
 public/
 ├── favicon.svg
-├── resume.pdf
-└── og.png            # Generated dynamically by Satori at build time
+└── resume.pdf
+e2e-tests/            # Playwright end-to-end tests
 ```
 
 ## Testing
@@ -80,6 +80,13 @@ Unit tests are written with [Vitest](https://vitest.dev/). Test files live along
 ```bash
 pnpm test          # Run all tests once
 pnpm test:watch    # Watch mode for local development
+```
+
+End-to-end tests use [Playwright](https://playwright.dev/) and live in `e2e-tests/`. They run against the production build, so a `pnpm build` is required first.
+
+```bash
+pnpm build && pnpm test:e2e   # Run e2e tests
+pnpm test:e2e:ui              # Interactive Playwright UI
 ```
 
 ## CI
