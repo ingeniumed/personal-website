@@ -13,7 +13,7 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 | Content | Markdown files in `src/data/blog/` with Zod-validated frontmatter |
 | Search | Pagefind (client-side, indexed at build time) |
 | OG Images | Satori + resvg-js (auto-generated per post at build) |
-| Font | Google Sans Code (loaded via Astro's font system) |
+| Font | IBM Plex Mono (committed TTF files in `src/assets/fonts/`, loaded via Astro's font system with `fontProviders.local()`) |
 | Testing | Vitest |
 | Linting | ESLint (flat config) + Prettier |
 | Deployment | Cloudflare Pages (static, pushes to `main` auto-deploy) |
@@ -134,6 +134,18 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 
 ### Removed Upstream Features
 Tags, archives page, and featured/recent post split on homepage have been **intentionally removed**. Do not re-add them.
+
+## Astro Best Practices
+
+Always follow Astro's official best practices and APIs. When implementing anything Astro-related, check the [Astro docs](https://docs.astro.build/) first rather than reaching for manual workarounds. Key areas where this matters:
+
+- **Fonts:** Use Astro's built-in font system (`fontProviders.local()` for self-hosted, `fontProviders.google()` for remote). This gives automatic preload hints, hashed filenames, and correct `@font-face` injection via the `<Font>` component. Never write manual `@font-face` rules or handle font loading outside this system for web fonts. The `<Font>` component lives in `astro:assets` and must be rendered in `<head>`.
+- **Images:** Use Astro's `<Image>` component or `getImage()` from `astro:assets` for all images that need optimization. Static assets that don't need optimization go in `public/`.
+- **Environment variables:** Use `astro:env` (already configured in `astro.config.ts`) rather than raw `import.meta.env`.
+- **Content:** Use Astro content collections with Zod schemas (already in place) — never read markdown files with raw `fs` calls.
+- **Routing:** File-based routing only — no manual route registration.
+
+If you are unsure whether an approach is idiomatic Astro, look it up before implementing.
 
 ## Gotchas and Conventions
 
