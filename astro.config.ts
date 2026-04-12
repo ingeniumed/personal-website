@@ -43,6 +43,88 @@ export default defineConfig({
     responsiveStyles: true,
     layout: "constrained",
   },
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "IBM Plex Mono",
+      cssVariable: "--font-ibm-plex-mono",
+      fallbacks: ["monospace"],
+      options: {
+        variants: [
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Light.woff2",
+            ],
+            weight: "300",
+            style: "normal",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2",
+            ],
+            weight: "400",
+            style: "normal",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Medium.woff2",
+            ],
+            weight: "500",
+            style: "normal",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-SemiBold.woff2",
+            ],
+            weight: "600",
+            style: "normal",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2",
+            ],
+            weight: "700",
+            style: "normal",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-LightItalic.woff2",
+            ],
+            weight: "300",
+            style: "italic",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Italic.woff2",
+            ],
+            weight: "400",
+            style: "italic",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-MediumItalic.woff2",
+            ],
+            weight: "500",
+            style: "italic",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-SemiBoldItalic.woff2",
+            ],
+            weight: "600",
+            style: "italic",
+          },
+          {
+            src: [
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-BoldItalic.woff2",
+            ],
+            weight: "700",
+            style: "italic",
+          },
+        ],
+      },
+    },
+  ],
   env: {
     schema: {
       PUBLIC_GOOGLE_SITE_VERIFICATION: envField.string({
@@ -52,14 +134,4 @@ export default defineConfig({
       }),
     },
   },
-  fonts: [
-    {
-      name: "Google Sans Code",
-      cssVariable: "--font-google-sans-code",
-      provider: fontProviders.google(),
-      fallbacks: ["monospace"],
-      weights: [300, 400, 500, 600, 700],
-      styles: ["normal", "italic"],
-    },
-  ],
 });

@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import satori from "satori";
-import loadGoogleFonts from "../loadGoogleFont";
+import loadFonts from "../loadFonts";
 
 export default async function postOgImage(post: CollectionEntry<"blog">) {
   return satori(
@@ -114,7 +114,7 @@ export default async function postOgImage(post: CollectionEntry<"blog">) {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(post.data.title + post.data.author + "by"),
+      fonts: await loadFonts(),
     }
   );
 }
