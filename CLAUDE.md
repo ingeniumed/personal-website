@@ -68,15 +68,16 @@ pnpm preview          # Preview production build locally
 pnpm lint             # ESLint
 pnpm format:check     # Prettier check
 pnpm format           # Prettier fix
-pnpm test             # Vitest (run once)
+pnpm test             # Vitest unit tests (run once)
+pnpm test:all         # Vitest + Playwright e2e (requires a prior pnpm build)
 pnpm test:watch       # Vitest (watch mode)
-pnpm build && pnpm test:e2e   # Playwright e2e tests (must build first — Pagefind search requires built index; tests live in e2e-tests/)
+pnpm test:e2e         # Playwright e2e only (requires a prior pnpm build)
 pnpm test:e2e:ui      # Playwright UI mode (interactive debugging)
 ```
 
 Build runs: `astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/`
 
-Pre-deploy checklist: `pnpm format && pnpm lint && pnpm test && pnpm build` — all must pass.
+Pre-deploy checklist: `pnpm format && pnpm lint && pnpm build && pnpm test:all` — all must pass.
 
 **e2e tests require a prior `pnpm build`** — they run against `pnpm preview` (the static build output). Pagefind search only works once the index is built.
 
@@ -249,7 +250,7 @@ Never do a full merge or rebase from upstream. Always cherry-pick file by file. 
    - `package.json` (dependency versions only)
 3. **For each diff, decide:** is this a theme improvement to adopt, or a divergence to keep? If adopting, check whether it uses Astro v5 APIs (content collections, config helpers, image components, routing) that need adapting to v6.
 4. **Apply changes manually** to this repo, not via patch/merge tooling. Treat each change as a port.
-5. **Run the full check suite** afterward: `pnpm format && pnpm lint && pnpm test && pnpm build`
+5. **Run the full check suite** afterward: `pnpm format && pnpm lint && pnpm build && pnpm test:all`
 
 ### Files to protect (never overwrite with upstream)
 

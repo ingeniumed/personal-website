@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:all": "pnpm test && pnpm test:e2e",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"

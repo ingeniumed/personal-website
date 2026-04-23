@@ -51,8 +51,5 @@ jobs:
       - name: "🚀 Build the project"
         run: pnpm run build
 
-      - name: "🧪 Run unit tests"
-        run: pnpm run test
-
-      - name: "🧪 Run e2e tests"
-        run: pnpm run test:e2e
+      - name: "🧪 Run tests"
+        run: pnpm run test:all
