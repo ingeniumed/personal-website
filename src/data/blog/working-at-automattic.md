@@ -9,6 +9,8 @@ description: "A detailed breakdown of the Automattic interview process, from the
 
 ## Table of contents
 
+## Background
+
 Back in 2014, I was hired to be the webmaster for the [McMaster Engineering Society](https://www.macengsociety.ca/). Their website was built using WordPress, and hosted on GoDaddy. Since then, I've always wanted to work at Automattic and when the opportunity came up in 2021, I took it.
 
 This post isn't meant to be a blueprint for how you would succeed in the interview process, but more of a breakdown of my experience. I would recommend reading David Artiss's post [here](https://artiss.blog/2019/03/the-automattic-hiring-process/) for that kind of a blueprint. His post was immensely helpful to me, along with [this](https://automattic.com/how-we-hire/) one.
