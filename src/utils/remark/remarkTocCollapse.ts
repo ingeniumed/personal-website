@@ -4,7 +4,6 @@ import { toString } from "mdast-util-to-string";
 
 /**
  * Custom remark plugin that generates a collapsible table of contents.
- * Replaces both `remark-toc` and `remark-collapse` in a single pass.
  *
  * Finds a heading matching "Table of contents", collects all subsequent
  * headings, builds a linked list, and wraps it in a <details> element.
