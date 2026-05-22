@@ -17,7 +17,7 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 | Testing | Vitest |
 | Linting | ESLint (flat config) + Prettier |
 | Deployment | Cloudflare Pages (static, pushes to `main` auto-deploy) |
-| Package Manager | **pnpm only** — never use npm or yarn |
+| Package Manager | **pnpm only** — never use npm or yarn (pinned via `packageManager`: `pnpm@11.2.2`) |
 
 ## Directory Structure
 
@@ -50,8 +50,8 @@ src/
     ├── slugify.ts         # URL slug generation
     ├── getPath.ts         # Post path resolution
     ├── generateOgImages.ts# Satori OG image generation
-    ├── loadGoogleFont.ts  # Font loading for OG images
-    ├── remark/            # Custom remark plugins (TOC collapse)
+    ├── loadFonts.ts       # Font loading for OG images
+    ├── og-templates/      # OG image templates (post + site)
     └── transformers/      # Shiki code block transformers (filename display)
 public/
 ├── favicon.svg
@@ -117,6 +117,13 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - Posts filtered by `postFilter.ts`: hides drafts and future-dated posts in production (with 15-min margin)
 - In dev mode, all non-draft posts are visible regardless of publish date
 
+### Table Of Contents
+- TOC is generated from Astro-rendered headings (`render(post)` in `src/layouts/PostDetails.astro`)
+- `src/components/TableOfContents.astro` renders all headings provided by Astro and computes indentation from heading depth
+- Active section highlighting is handled client-side with `IntersectionObserver`
+- TOC is positioned in a desktop-only left rail via `PostDetails.astro`, while article content retains full width
+- There is no custom remark plugin for TOC generation
+
 ### Theme System
 - Light/dark mode via `data-theme` attribute on `<html>`
 - CSS custom properties defined in `global.css` (e.g., `--background`, `--foreground`, `--accent`)
@@ -161,7 +168,7 @@ If you are unsure whether an approach is idiomatic Astro, look it up before impl
 - **Vitest env override** — `test.env.DEV` is set to `""` so tests exercise production-like post filtering (date scheduling enforced, not bypassed)
 - **Images in posts** go in `src/assets/images/` for optimization, referenced as `@/assets/images/filename.png`
 - **Blog frontmatter dates** use ISO 8601 UTC with Z suffix (e.g., `2026-03-30T10:00:00Z`)
-- **CI** runs on every PR via GitHub Actions: lint, format check, test, build (`.github/workflows/ci.yml`, Node 22, pnpm 10.11.1)
+- **CI** runs on every PR via GitHub Actions: lint, format check, test, build (`.github/workflows/ci.yml`, Node 24, pnpm with cache enabled)
 
 ## Deployment
 

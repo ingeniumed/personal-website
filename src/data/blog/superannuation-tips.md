@@ -7,8 +7,6 @@ featured: false
 description: "Tips on how to improve one's superannuation's balance, while also investing outside your super."
 ---
 
-## Table of contents
-
 ## Background
 
 Unlike Canada, Australia doesn't have a TFSA, RRSP or even a LIRA. Instead, it has the superannuation with contributions into it being mandatory by every employer/employee and its balance untouchable (barring certain circumstances) until preservation age is reached. Due to most people just leaving this on autopilot, it's easy to leave extra money on the table.

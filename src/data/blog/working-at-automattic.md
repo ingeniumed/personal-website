@@ -7,8 +7,6 @@ featured: true
 description: "A detailed breakdown of the Automattic interview process, from the recruiter chat and Slack interview to the code test, paid trial, and the final offer."
 ---
 
-## Table of contents
-
 ## Background
 
 Back in 2014, I was hired to be the webmaster for the [McMaster Engineering Society](https://www.macengsociety.ca/). Their website was built using WordPress, and hosted on GoDaddy. Since then, I've always wanted to work at Automattic and when the opportunity came up in 2021, I took it.

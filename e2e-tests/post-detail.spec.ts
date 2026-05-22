@@ -37,8 +37,8 @@ test.describe("Post Detail Page", () => {
     await firstPostLink.click();
     // showBackButton is true in config
     await expect(
-      page.locator('a[href="/posts/"]').or(page.getByRole("link", { name: /back/i }))
-    ).toBeVisible();
+      page.locator("#back-button:visible, #back-button-desktop:visible")
+    ).toHaveCount(1);
   });
 
   test("post detail has heading anchor links in DOM", async ({ page }) => {
@@ -53,6 +53,8 @@ test.describe("Post Detail Page", () => {
 
 test.describe("Working at Automattic — Table of Contents", () => {
   test.beforeEach(async ({ page }) => {
+    // TOC is desktop-only (`hidden xl:block`).
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/posts/working-at-automattic/");
   });
 
@@ -62,26 +64,17 @@ test.describe("Working at Automattic — Table of Contents", () => {
     ).toBeVisible();
   });
 
-  test("table of contents is present inside a details element", async ({
-    page,
-  }) => {
-    // remarkTocCollapse wraps the TOC in a <details> element
-    const details = page.locator("details").first();
-    await expect(details).toBeAttached();
-    // Open the details element to reveal the TOC links
-    await page.locator("details summary").first().click();
-    // TOC list links should now be visible
-    const tocLink = page.locator("details ul a").first();
-    await expect(tocLink).toBeVisible();
+  test("table of contents nav is visible on desktop", async ({ page }) => {
+    const tocNav = page.getByRole("navigation", { name: "On this page" });
+    await expect(tocNav).toBeVisible();
+    await expect(tocNav.locator("a").first()).toBeVisible();
   });
 
   test("clicking a TOC link jumps to the correct heading", async ({
     page,
   }) => {
-    // The TOC is inside a <details> element — open it first
-    await page.locator("details summary").first().click();
-    // Now find the TOC link by text within the details element
-    const positionLink = page.locator("details").getByRole("link", {
+    // Find TOC link inside the desktop On this page navigation.
+    const positionLink = page.getByRole("navigation", { name: "On this page" }).getByRole("link", {
       name: "The Position",
     });
     await expect(positionLink).toBeVisible();
@@ -97,9 +90,7 @@ test.describe("Working at Automattic — Table of Contents", () => {
   });
 
   test("clicking second TOC link also jumps correctly", async ({ page }) => {
-    // Open the details element first
-    await page.locator("details summary").first().click();
-    const breakdownLink = page.locator("details").getByRole("link", {
+    const breakdownLink = page.getByRole("navigation", { name: "On this page" }).getByRole("link", {
       name: "Breakdown of the Interview Process",
     });
     await expect(breakdownLink).toBeVisible();

@@ -7,8 +7,6 @@ featured: false
 description: "My 2024 reading list, from Steve Jobs to Project Hail Mary. Reignited by Audible after becoming a new dad and finding new pockets of time."
 ---
 
-## Table of contents
-
 ## Background
 
 Ever since I stopped commuting to work and switched permanently to working from home, I've struggled to consistently read books. I have missed that consistent time block that I could use to work through my backlog.

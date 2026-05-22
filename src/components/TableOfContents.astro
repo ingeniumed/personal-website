@@ -1,0 +1,128 @@
+---
+import type { MarkdownHeading } from "astro";
+
+// Component props, headings is optional for safety.
+interface Props {
+  headings?: MarkdownHeading[];
+}
+
+// Read headings from Astro props, default to empty array.
+const { headings = [] } = Astro.props;
+
+// Use all headings exactly as provided by Astro.
+const tocHeadings = headings;
+
+// Compute the minimum depth so indentation starts from 0.
+const minDepth = tocHeadings.length
+  ? Math.min(...tocHeadings.map(heading => heading.depth))
+  : 1;
+---
+
+{/* Render nothing if there are no headings. */}
+{
+  tocHeadings.length > 0 && (
+    <aside class="hidden xl:block" data-toc-root>
+      <div class="sticky top-24 max-h-[calc(100vh-7rem)] w-64 overflow-auto pr-4">
+        <h2 class="mb-3 text-sm font-semibold">On this page</h2>
+
+        <nav aria-label="On this page">
+          <ol class="space-y-1 text-sm">
+            {tocHeadings.map(heading => (
+              <li>
+                <a
+                  href={`#${heading.slug}`}
+                  data-toc-link
+                  style={`padding-left: ${Math.max(0, heading.depth - minDepth) * 0.75}rem;`}
+                  class="block rounded px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  // Keep teardown logic so re-initialization across Astro navigation stays safe.
+  let cleanup = () => {};
+
+  function initToc() {
+    cleanup();
+
+    const tocRoot = document.querySelector("[data-toc-root]");
+    if (!tocRoot) return;
+
+    // Collect links only from this TOC instance.
+    const links = Array.from(tocRoot.querySelectorAll("a[data-toc-link]"));
+    if (links.length === 0) return;
+
+    const linkById = new Map();
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      if (!href?.startsWith("#")) continue;
+      const id = decodeURIComponent(href.slice(1));
+      linkById.set(id, link);
+    }
+    if (linkById.size === 0) return;
+
+    let lastActiveId = "";
+    const observer = new IntersectionObserver(
+      entries => {
+        let bestTarget = null;
+        let bestTop = Number.POSITIVE_INFINITY;
+
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          if (!(entry.target instanceof HTMLElement)) continue;
+          const { id } = entry.target;
+          if (!id || !linkById.has(id)) continue;
+
+          const top = Math.abs(entry.boundingClientRect.top);
+          if (top < bestTop) {
+            bestTop = top;
+            bestTarget = entry.target;
+          }
+        }
+
+        if (!bestTarget) return;
+
+        const activeId = bestTarget.id;
+        if (activeId === lastActiveId) return;
+
+        const previousActiveLink = linkById.get(lastActiveId);
+        if (previousActiveLink) {
+          previousActiveLink.classList.remove("font-semibold", "text-sky-600");
+          previousActiveLink.removeAttribute("aria-current");
+        }
+
+        const nextActiveLink = linkById.get(activeId);
+        if (!nextActiveLink) return;
+        nextActiveLink.classList.add("font-semibold", "text-sky-600");
+        nextActiveLink.setAttribute("aria-current", "true");
+
+        lastActiveId = activeId;
+      },
+      { rootMargin: "0px 0px -65% 0px", threshold: [0, 1] }
+    );
+
+    for (const id of linkById.keys()) {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    }
+
+    // Disconnect observers before any future re-init.
+    cleanup = () => {
+      observer.disconnect();
+      cleanup = () => {};
+    };
+  }
+
+  // Re-run on Astro client navigations.
+  document.addEventListener("astro:page-load", initToc);
+  // Run once for initial page load.
+  initToc();
+</script>

@@ -26,12 +26,6 @@ importers:
       dayjs:
         specifier: ^1.11.20
         version: 1.11.20
-      github-slugger:
-        specifier: ^2.0.0
-        version: 2.0.0
-      mdast-util-to-string:
-        specifier: ^4.0.0
-        version: 4.0.0
       satori:
         specifier: ^0.25.0
         version: 0.25.0
@@ -66,9 +60,6 @@ importers:
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
-      '@types/mdast':
-        specifier: ^4.0.4
-        version: 4.0.4
       '@types/slug':
         specifier: ^5.0.9
         version: 5.0.9
