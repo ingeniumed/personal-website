@@ -24,7 +24,7 @@ test.describe("404 Page", () => {
     await page.goto("/404", { waitUntil: "domcontentloaded" });
 
     const homeLink = page
-      .getByRole("link", { name: /go back|home|back/i })
+      .getByRole("link", { name: /home/i })
       .or(page.locator('a[href="/"]'));
     await expect(homeLink.first()).toBeVisible();
   });

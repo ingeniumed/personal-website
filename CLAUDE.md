@@ -100,7 +100,6 @@ featured: false                    # Optional
 ogImage: ./path-to-image.png       # Optional (auto-generated if omitted)
 canonicalURL: https://...          # Optional
 timezone: Australia/Sydney          # Optional (overrides site default)
-hideEditPost: false                # Optional
 ---
 ```
 
@@ -216,7 +215,6 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 - **No automated link checking.** Blog posts link to external sites (Goodreads, job listings, YouTube) that can go stale over time.
 - **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/data/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
-- **`editPost` is disabled.** The config has `editPost.enabled: false` with a GitHub URL configured. Could be re-enabled for a "suggest edits" workflow.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
 
 ## Relationship to AstroPaper

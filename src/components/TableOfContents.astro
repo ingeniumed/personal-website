@@ -7,7 +7,7 @@ interface Props {
 }
 
 // Read headings from Astro props, default to empty array.
-const { headings = [] } = Astro.props;
+const { headings = [] } = Astro.props as Props;
 
 // Use all headings exactly as provided by Astro.
 const tocHeadings = headings;
@@ -22,7 +22,7 @@ const minDepth = tocHeadings.length
 {
   tocHeadings.length > 0 && (
     <aside class="hidden xl:block" data-toc-root>
-      <div class="sticky top-24 max-h-[calc(100vh-7rem)] w-64 overflow-auto pr-4">
+      <div class="max-h-[calc(100vh-7rem)] w-64 overflow-auto pr-4">
         <h2 class="mb-3 text-sm font-semibold">On this page</h2>
 
         <nav aria-label="On this page">
@@ -50,6 +50,35 @@ const minDepth = tocHeadings.length
   // Keep teardown logic so re-initialization across Astro navigation stays safe.
   let cleanup = () => {};
 
+  function decodeFragment(value: string): string {
+    try {
+      return decodeURIComponent(value);
+    } catch {
+      return value;
+    }
+  }
+
+  function setActiveLink(
+    linkById: Map<string, HTMLAnchorElement>,
+    previousId: string,
+    nextId: string
+  ): string {
+    if (previousId) {
+      const previous = linkById.get(previousId);
+      if (previous) {
+        previous.classList.remove("font-semibold", "text-sky-600");
+        previous.removeAttribute("aria-current");
+      }
+    }
+
+    const next = linkById.get(nextId);
+    if (!next) return previousId;
+
+    next.classList.add("font-semibold", "text-sky-600");
+    next.setAttribute("aria-current", "location");
+    return nextId;
+  }
+
   function initToc() {
     cleanup();
 
@@ -57,66 +86,103 @@ const minDepth = tocHeadings.length
     if (!tocRoot) return;
 
     // Collect links only from this TOC instance.
-    const links = Array.from(tocRoot.querySelectorAll("a[data-toc-link]"));
+    const links = Array.from(
+      tocRoot.querySelectorAll<HTMLAnchorElement>("a[data-toc-link]")
+    );
     if (links.length === 0) return;
 
-    const linkById = new Map();
+    const linkById = new Map<string, HTMLAnchorElement>();
     for (const link of links) {
       const href = link.getAttribute("href");
       if (!href?.startsWith("#")) continue;
-      const id = decodeURIComponent(href.slice(1));
+      const id = decodeFragment(href.slice(1));
       linkById.set(id, link);
     }
     if (linkById.size === 0) return;
 
     let lastActiveId = "";
+    const visibleIds = new Set<string>();
+    const sectionById = new Map<string, HTMLElement>();
+
+    const updateActiveHeading = () => {
+      let bestId = "";
+      let bestTop = Number.POSITIVE_INFINITY;
+
+      for (const id of visibleIds) {
+        const section = sectionById.get(id);
+        if (!section) continue;
+
+        const top = Math.abs(section.getBoundingClientRect().top);
+        if (top < bestTop) {
+          bestTop = top;
+          bestId = id;
+        }
+      }
+
+      // When no heading is intersecting yet, fall back to URL hash if present.
+      if (!bestId && window.location.hash) {
+        const hashId = decodeFragment(window.location.hash.slice(1));
+        if (linkById.has(hashId)) bestId = hashId;
+      }
+
+      if (!bestId || bestId === lastActiveId) return;
+      lastActiveId = setActiveLink(linkById, lastActiveId, bestId);
+    };
+
     const observer = new IntersectionObserver(
       entries => {
-        let bestTarget = null;
-        let bestTop = Number.POSITIVE_INFINITY;
-
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
           if (!(entry.target instanceof HTMLElement)) continue;
+
           const { id } = entry.target;
-          if (!id || !linkById.has(id)) continue;
+          if (!id || !linkById.has(id) || !sectionById.has(id)) continue;
 
-          const top = Math.abs(entry.boundingClientRect.top);
-          if (top < bestTop) {
-            bestTop = top;
-            bestTarget = entry.target;
-          }
+          if (entry.isIntersecting) visibleIds.add(id);
+          else visibleIds.delete(id);
         }
 
-        if (!bestTarget) return;
-
-        const activeId = bestTarget.id;
-        if (activeId === lastActiveId) return;
-
-        const previousActiveLink = linkById.get(lastActiveId);
-        if (previousActiveLink) {
-          previousActiveLink.classList.remove("font-semibold", "text-sky-600");
-          previousActiveLink.removeAttribute("aria-current");
-        }
-
-        const nextActiveLink = linkById.get(activeId);
-        if (!nextActiveLink) return;
-        nextActiveLink.classList.add("font-semibold", "text-sky-600");
-        nextActiveLink.setAttribute("aria-current", "true");
-
-        lastActiveId = activeId;
+        updateActiveHeading();
       },
-      { rootMargin: "0px 0px -65% 0px", threshold: [0, 1] }
+      { rootMargin: "0px 0px -65% 0px", threshold: 0 }
     );
 
     for (const id of linkById.keys()) {
       const section = document.getElementById(id);
-      if (section) observer.observe(section);
+      if (!section) continue;
+      sectionById.set(id, section);
+      observer.observe(section);
     }
+
+    const clickController = new AbortController();
+    for (const link of links) {
+      link.addEventListener(
+        "click",
+        () => {
+          const href = link.getAttribute("href");
+          if (!href?.startsWith("#")) return;
+          const id = decodeFragment(href.slice(1));
+          if (!linkById.has(id)) return;
+          lastActiveId = setActiveLink(linkById, lastActiveId, id);
+        },
+        { signal: clickController.signal }
+      );
+    }
+
+    const onHashChange = () => {
+      const hashId = decodeFragment(window.location.hash.slice(1));
+      if (!hashId || !linkById.has(hashId)) return;
+      lastActiveId = setActiveLink(linkById, lastActiveId, hashId);
+    };
+    window.addEventListener("hashchange", onHashChange, {
+      signal: clickController.signal,
+    });
+
+    updateActiveHeading();
 
     // Disconnect observers before any future re-init.
     cleanup = () => {
       observer.disconnect();
+      clickController.abort();
       cleanup = () => {};
     };
   }

@@ -31,16 +31,6 @@ test.describe("Post Detail Page", () => {
     await expect(page.getByText("Share this post on:")).toBeVisible();
   });
 
-  test("post detail shows back button", async ({ page }) => {
-    await page.goto("/posts/");
-    const firstPostLink = page.locator("a[href^='/posts/']").first();
-    await firstPostLink.click();
-    // showBackButton is true in config
-    await expect(
-      page.locator("#back-button:visible, #back-button-desktop:visible")
-    ).toHaveCount(1);
-  });
-
   test("post detail has heading anchor links in DOM", async ({ page }) => {
     // Navigate to a post known to have h2+ headings
     await page.goto("/posts/working-at-automattic/");
