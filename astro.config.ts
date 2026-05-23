@@ -1,7 +1,6 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import { remarkTocCollapse } from "./src/utils/remark/remarkTocCollapse";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -19,7 +18,6 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkTocCollapse],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },

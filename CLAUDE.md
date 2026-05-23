@@ -17,7 +17,7 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 | Testing | Vitest |
 | Linting | ESLint (flat config) + Prettier |
 | Deployment | Cloudflare Pages (static, pushes to `main` auto-deploy) |
-| Package Manager | **pnpm only** — never use npm or yarn |
+| Package Manager | **pnpm only** — never use npm or yarn (pinned via `packageManager`: `pnpm@11.2.2`) |
 
 ## Directory Structure
 
@@ -50,8 +50,8 @@ src/
     ├── slugify.ts         # URL slug generation
     ├── getPath.ts         # Post path resolution
     ├── generateOgImages.ts# Satori OG image generation
-    ├── loadGoogleFont.ts  # Font loading for OG images
-    ├── remark/            # Custom remark plugins (TOC collapse)
+    ├── loadFonts.ts       # Font loading for OG images
+    ├── og-templates/      # OG image templates (post + site)
     └── transformers/      # Shiki code block transformers (filename display)
 public/
 ├── favicon.svg
@@ -100,7 +100,6 @@ featured: false                    # Optional
 ogImage: ./path-to-image.png       # Optional (auto-generated if omitted)
 canonicalURL: https://...          # Optional
 timezone: Australia/Sydney          # Optional (overrides site default)
-hideEditPost: false                # Optional
 ---
 ```
 
@@ -116,6 +115,13 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - Schema validated via Zod in `src/content.config.ts`
 - Posts filtered by `postFilter.ts`: hides drafts and future-dated posts in production (with 15-min margin)
 - In dev mode, all non-draft posts are visible regardless of publish date
+
+### Table Of Contents
+- TOC is generated from Astro-rendered headings (`render(post)` in `src/layouts/PostDetails.astro`)
+- `src/components/TableOfContents.astro` renders all headings provided by Astro and computes indentation from heading depth
+- Active section highlighting is handled client-side with `IntersectionObserver`
+- TOC is positioned in a desktop-only left rail via `PostDetails.astro`, while article content retains full width
+- There is no custom remark plugin for TOC generation
 
 ### Theme System
 - Light/dark mode via `data-theme` attribute on `<html>`
@@ -161,7 +167,7 @@ If you are unsure whether an approach is idiomatic Astro, look it up before impl
 - **Vitest env override** — `test.env.DEV` is set to `""` so tests exercise production-like post filtering (date scheduling enforced, not bypassed)
 - **Images in posts** go in `src/assets/images/` for optimization, referenced as `@/assets/images/filename.png`
 - **Blog frontmatter dates** use ISO 8601 UTC with Z suffix (e.g., `2026-03-30T10:00:00Z`)
-- **CI** runs on every PR via GitHub Actions: lint, format check, test, build (`.github/workflows/ci.yml`, Node 22, pnpm 10.11.1)
+- **CI** runs on every PR via GitHub Actions: lint, format check, test, build (`.github/workflows/ci.yml`, Node 24, pnpm with cache enabled)
 
 ## Deployment
 
@@ -209,7 +215,6 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 - **No automated link checking.** Blog posts link to external sites (Goodreads, job listings, YouTube) that can go stale over time.
 - **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/data/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
-- **`editPost` is disabled.** The config has `editPost.enabled: false` with a GitHub URL configured. Could be re-enabled for a "suggest edits" workflow.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
 
 ## Relationship to AstroPaper

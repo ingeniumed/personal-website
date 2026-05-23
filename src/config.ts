@@ -10,12 +10,6 @@ export const SITE = {
   postPerPage: 6,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   showArchives: false,
-  showBackButton: true, // show back button in post detail
-  editPost: {
-    enabled: false,
-    text: "Edit page",
-    url: "https://github.com/ingeniumed/personal-website/edit/main/",
-  },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"
   lang: "en", // html lang code. Set this empty and default will be "en"

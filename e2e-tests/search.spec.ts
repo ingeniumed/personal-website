@@ -17,6 +17,8 @@ test.describe("Search → Post → TOC navigation (full user journey)", () => {
   test("search for working-at-automattic, open result, jump via TOC", async ({
     page,
   }) => {
+    // TOC is desktop-only (`hidden xl:block`).
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/search/");
 
     // Wait for Pagefind to initialise
@@ -43,10 +45,8 @@ test.describe("Search → Post → TOC navigation (full user journey)", () => {
       page.getByRole("heading", { level: 1, name: /automattic/i })
     ).toBeVisible();
 
-    // The TOC is inside a <details> element — open it first
-    await page.locator("details summary").first().click();
-    // Click the "The Position" TOC link inside the details element
-    const tocLink = page.locator("details").getByRole("link", {
+    // Click the "The Position" TOC link from the desktop On this page nav.
+    const tocLink = page.getByRole("navigation", { name: "On this page" }).getByRole("link", {
       name: "The Position",
     });
     await expect(tocLink).toBeVisible();

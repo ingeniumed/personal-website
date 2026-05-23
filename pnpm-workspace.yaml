@@ -1,0 +1,4 @@
+allowBuilds:
+  '@ibm/plex': true
+  esbuild: true
+  sharp: true

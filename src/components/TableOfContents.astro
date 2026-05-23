@@ -1,0 +1,194 @@
+---
+import type { MarkdownHeading } from "astro";
+
+// Component props, headings is optional for safety.
+interface Props {
+  headings?: MarkdownHeading[];
+}
+
+// Read headings from Astro props, default to empty array.
+const { headings = [] } = Astro.props as Props;
+
+// Use all headings exactly as provided by Astro.
+const tocHeadings = headings;
+
+// Compute the minimum depth so indentation starts from 0.
+const minDepth = tocHeadings.length
+  ? Math.min(...tocHeadings.map(heading => heading.depth))
+  : 1;
+---
+
+{/* Render nothing if there are no headings. */}
+{
+  tocHeadings.length > 0 && (
+    <aside class="hidden xl:block" data-toc-root>
+      <div class="max-h-[calc(100vh-7rem)] w-64 overflow-auto pr-4">
+        <h2 class="mb-3 text-sm font-semibold">On this page</h2>
+
+        <nav aria-label="On this page">
+          <ol class="space-y-1 text-sm">
+            {tocHeadings.map(heading => (
+              <li>
+                <a
+                  href={`#${heading.slug}`}
+                  data-toc-link
+                  style={`padding-left: ${Math.max(0, heading.depth - minDepth) * 0.75}rem;`}
+                  class="block rounded px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  // Keep teardown logic so re-initialization across Astro navigation stays safe.
+  let cleanup = () => {};
+
+  function decodeFragment(value: string): string {
+    try {
+      return decodeURIComponent(value);
+    } catch {
+      return value;
+    }
+  }
+
+  function setActiveLink(
+    linkById: Map<string, HTMLAnchorElement>,
+    previousId: string,
+    nextId: string
+  ): string {
+    if (previousId) {
+      const previous = linkById.get(previousId);
+      if (previous) {
+        previous.classList.remove("font-semibold", "text-sky-600");
+        previous.removeAttribute("aria-current");
+      }
+    }
+
+    const next = linkById.get(nextId);
+    if (!next) return previousId;
+
+    next.classList.add("font-semibold", "text-sky-600");
+    next.setAttribute("aria-current", "location");
+    return nextId;
+  }
+
+  function initToc() {
+    cleanup();
+
+    const tocRoot = document.querySelector("[data-toc-root]");
+    if (!tocRoot) return;
+
+    // Collect links only from this TOC instance.
+    const links = Array.from(
+      tocRoot.querySelectorAll<HTMLAnchorElement>("a[data-toc-link]")
+    );
+    if (links.length === 0) return;
+
+    const linkById = new Map<string, HTMLAnchorElement>();
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      if (!href?.startsWith("#")) continue;
+      const id = decodeFragment(href.slice(1));
+      linkById.set(id, link);
+    }
+    if (linkById.size === 0) return;
+
+    let lastActiveId = "";
+    const visibleIds = new Set<string>();
+    const sectionById = new Map<string, HTMLElement>();
+
+    const updateActiveHeading = () => {
+      let bestId = "";
+      let bestTop = Number.POSITIVE_INFINITY;
+
+      for (const id of visibleIds) {
+        const section = sectionById.get(id);
+        if (!section) continue;
+
+        const top = Math.abs(section.getBoundingClientRect().top);
+        if (top < bestTop) {
+          bestTop = top;
+          bestId = id;
+        }
+      }
+
+      // When no heading is intersecting yet, fall back to URL hash if present.
+      if (!bestId && window.location.hash) {
+        const hashId = decodeFragment(window.location.hash.slice(1));
+        if (linkById.has(hashId)) bestId = hashId;
+      }
+
+      if (!bestId || bestId === lastActiveId) return;
+      lastActiveId = setActiveLink(linkById, lastActiveId, bestId);
+    };
+
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (!(entry.target instanceof HTMLElement)) continue;
+
+          const { id } = entry.target;
+          if (!id || !linkById.has(id) || !sectionById.has(id)) continue;
+
+          if (entry.isIntersecting) visibleIds.add(id);
+          else visibleIds.delete(id);
+        }
+
+        updateActiveHeading();
+      },
+      { rootMargin: "0px 0px -65% 0px", threshold: 0 }
+    );
+
+    for (const id of linkById.keys()) {
+      const section = document.getElementById(id);
+      if (!section) continue;
+      sectionById.set(id, section);
+      observer.observe(section);
+    }
+
+    const clickController = new AbortController();
+    for (const link of links) {
+      link.addEventListener(
+        "click",
+        () => {
+          const href = link.getAttribute("href");
+          if (!href?.startsWith("#")) return;
+          const id = decodeFragment(href.slice(1));
+          if (!linkById.has(id)) return;
+          lastActiveId = setActiveLink(linkById, lastActiveId, id);
+        },
+        { signal: clickController.signal }
+      );
+    }
+
+    const onHashChange = () => {
+      const hashId = decodeFragment(window.location.hash.slice(1));
+      if (!hashId || !linkById.has(hashId)) return;
+      lastActiveId = setActiveLink(linkById, lastActiveId, hashId);
+    };
+    window.addEventListener("hashchange", onHashChange, {
+      signal: clickController.signal,
+    });
+
+    updateActiveHeading();
+
+    // Disconnect observers before any future re-init.
+    cleanup = () => {
+      observer.disconnect();
+      clickController.abort();
+      cleanup = () => {};
+    };
+  }
+
+  // Re-run on Astro client navigations.
+  document.addEventListener("astro:page-load", initToc);
+  // Run once for initial page load.
+  initToc();
+</script>
