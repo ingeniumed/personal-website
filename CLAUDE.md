@@ -143,6 +143,44 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - Shiki with dual themes (min-light / night-owl)
 - Custom transformers: filename display, diff notation, line highlighting, word highlighting
 
+### Client-Side Enhancements
+The site uses progressive enhancement with minimal JavaScript for interactive features:
+
+**Architecture:**
+- Scripts live in `src/scripts/` with proper TypeScript types and JSDoc documentation
+- Follow Astro's idiomatic pattern: direct function calls + `astro:page-load` event listeners
+- No custom lifecycle wrappers — explicit and clear
+
+**Teardown Pattern:**
+- `lifecycle.ts` exports `createTeardownBag()` for managing cleanup of event listeners
+- Prevents memory leaks during Astro view transitions
+- Each enhancer maintains an `activeTeardown` to clean up on unmount
+
+**Back-to-Top Button** (`backToTopEnhancer.ts`):
+- Scroll progress indicator (conic gradient)
+- Visibility toggle at 30% scroll depth
+- Uses `requestAnimationFrame` throttling for performance
+- Mounted when `#btt-btn-container` exists
+
+**Post Details** (`postDetailsEnhancer.ts`):
+- Reading progress bar (server-rendered in `PostDetails.astro`, animated client-side)
+- Heading anchor links (# symbols) added dynamically with hover states
+- Scroll position reset after view transitions
+
+**Initialization Pattern:**
+```astro
+<script>
+  import { mountEnhancer } from "@/scripts/enhancer";
+  
+  function init() {
+    mountEnhancer();
+  }
+  
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>
+```
+
 ### Removed Upstream Features
 Tags, archives page, featured/recent post split on homepage, and **light/dark mode toggle** have been **intentionally removed**. The site is permanently set to dark mode. Do not re-add these features.
 
@@ -220,6 +258,28 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 - **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/data/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
+
+## Recent Improvements (May 2026)
+
+### Theme System Simplification
+- Removed all theme switching logic — site is now permanently dark mode
+- Dark colors defined as defaults in `:root` CSS (no `data-theme` attributes needed)
+- Removed 243 lines of theme toggle code including `src/scripts/theme.ts`
+- Browser integration via `color-scheme: dark` property
+- Mobile browser bar set via `<meta name="theme-color">`
+
+### Script Architecture Refactor
+- Removed complex `createPageLoadStarter` wrapper in favor of idiomatic Astro patterns
+- Added comprehensive JSDoc documentation to all public functions
+- Moved progress bar from dynamic JS creation to server-rendered HTML (PostDetails.astro)
+- Standardized element selection (consistent use of `getElementById`)
+- Fixed bug: removed redundant `doc.body.scrollTop` assignment
+- Net result: -40 lines (-14%), clearer code, better performance
+
+### Configuration Cleanup
+- Removed unused `PUBLIC_GOOGLE_SITE_VERIFICATION` environment variable
+- No Google Search Console integration (not needed)
+- Cleaner `astro.config.ts` and `Layout.astro`
 
 ## Relationship to AstroPaper
 
