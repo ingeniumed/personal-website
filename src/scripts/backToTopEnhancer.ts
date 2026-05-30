@@ -1,19 +1,20 @@
-import {
-  createPageLoadStarter,
-  createTeardownBag,
-  type Teardown,
-} from "@/scripts/lifecycle";
+import { createTeardownBag, type Teardown } from "@/scripts/lifecycle";
 
 let activeTeardown: Teardown | undefined;
 
+/**
+ * Creates the back-to-top button enhancer with scroll progress indicator
+ *
+ * @param doc - The document to enhance (defaults to global document)
+ */
 function createBackToTopEnhancer(doc: Document) {
   const lifecycle = createTeardownBag();
 
   function init() {
     const rootElement = doc.documentElement;
-    const btnContainer = doc.querySelector("#btt-btn-container");
+    const btnContainer = doc.getElementById("btt-btn-container");
     const backToTopBtn = doc.querySelector("[data-button='back-to-top']");
-    const progressIndicator = doc.querySelector("#progress-indicator");
+    const progressIndicator = doc.getElementById("progress-indicator");
 
     if (
       !(btnContainer instanceof HTMLElement) ||
@@ -23,7 +24,6 @@ function createBackToTopEnhancer(doc: Document) {
       return;
 
     lifecycle.listen(backToTopBtn, "click", () => {
-      doc.body.scrollTop = 0;
       doc.documentElement.scrollTop = 0;
     });
 
@@ -72,6 +72,11 @@ function createBackToTopEnhancer(doc: Document) {
   };
 }
 
+/**
+ * Mounts the back-to-top button enhancer if the button container exists
+ *
+ * @param doc - The document to enhance (defaults to global document)
+ */
 export function mountBackToTopEnhancer(doc: Document = document) {
   const container = doc.getElementById("btt-btn-container");
   if (!(container instanceof HTMLElement)) {
@@ -86,7 +91,3 @@ export function mountBackToTopEnhancer(doc: Document = document) {
   enhancer.init();
   activeTeardown = () => enhancer.destroy();
 }
-
-export const startBackToTopEnhancer = createPageLoadStarter(
-  mountBackToTopEnhancer
-);

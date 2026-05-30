@@ -33,7 +33,12 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
 </div>
 
 <script>
-  import { startBackToTopEnhancer } from "@/scripts/backToTopEnhancer";
+  import { mountBackToTopEnhancer } from "@/scripts/backToTopEnhancer";
 
-  startBackToTopEnhancer(document);
+  function init() {
+    mountBackToTopEnhancer();
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>

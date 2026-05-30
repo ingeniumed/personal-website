@@ -92,12 +92,9 @@
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
+  /* Code block styling - dark theme only */
   .astro-code {
-    @apply flex border bg-(--shiki-light-bg) text-(--shiki-light) outline-border [&_span]:text-(--shiki-light);
-  }
-
-  html[data-theme="dark"] .astro-code {
-    @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
+    @apply flex border bg-(--shiki-dark-bg) text-(--shiki-dark) outline-border [&_span]:text-(--shiki-dark);
   }
 
   /* Styles for Shiki transformers */
