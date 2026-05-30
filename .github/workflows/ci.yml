@@ -37,8 +37,8 @@ jobs:
       - name: "📦 Install dependencies"
         run: pnpm install
 
-      - name: "🎭 Install Playwright browsers"
-        run: pnpm exec playwright install --with-deps chromium
+      - name: "🎭 Setup Playwright"
+        uses: dtinth/setup-playwright-test-docker@main
 
       - name: "🔎 Lint code"
         run: pnpm run lint
