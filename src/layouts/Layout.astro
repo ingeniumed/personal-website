@@ -143,7 +143,7 @@ const structuredData = isArticle
       href={new URL("rss.xml", Astro.site)}
     />
 
-    <meta name="theme-color" content="" />
+    <meta name="theme-color" content="#212737" />
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
@@ -158,41 +158,8 @@ const structuredData = isArticle
     }
 
     <ClientRouter />
-
-    <!-- Minimal inline script to prevent FOUC - sets theme immediately -->
-    <script is:inline>
-      (function () {
-        const initialColorScheme = ""; // "light" | "dark"
-        const currentTheme = localStorage.getItem("theme");
-
-        function getPreferTheme() {
-          if (currentTheme) return currentTheme;
-          if (initialColorScheme) return initialColorScheme;
-          return window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-        }
-
-        const themeValue = getPreferTheme();
-
-        // Set theme immediately to prevent flash
-        document.firstElementChild?.setAttribute("data-theme", themeValue);
-
-        // Export minimal API for external script
-        window.theme = {
-          themeValue: themeValue,
-          getTheme: () => window.theme.themeValue,
-          setTheme: val => {
-            window.theme.themeValue = val;
-          },
-        };
-      })();
-    </script>
   </head>
   <body>
     <slot />
-
-    <!-- Load full theme logic -->
-    <script src="../scripts/theme.ts"></script>
   </body>
 </html>

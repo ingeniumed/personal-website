@@ -40,7 +40,10 @@ src/
 │   ├── rss.xml.ts        # RSS feed endpoint
 │   ├── robots.txt.ts     # Dynamic robots.txt
 │   └── og.png.ts         # Site-level OG image (Satori)
-├── scripts/theme.ts      # Dark/light theme toggle logic
+├── scripts/
+│   ├── backToTopEnhancer.ts    # Back-to-top button logic
+│   ├── lifecycle.ts            # Teardown bag for cleanup
+│   └── postDetailsEnhancer.ts  # Post details page enhancements
 ├── styles/
 │   ├── global.css         # Tailwind imports, CSS custom properties, theme colors
 │   └── typography.css     # Prose/typography styles
@@ -124,10 +127,11 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - There is no custom remark plugin for TOC generation
 
 ### Theme System
-- Light/dark mode via `data-theme` attribute on `<html>`
-- CSS custom properties defined in `global.css` (e.g., `--background`, `--foreground`, `--accent`)
-- Inline script in `Layout.astro` prevents FOUC by setting theme before paint
-- Tailwind dark variant uses `@custom-variant dark` targeting `[data-theme=dark]`
+- **Permanently dark mode** — dark colors are defined as the default in `:root`
+- No theme switching logic or `data-theme` attributes needed
+- CSS `color-scheme: dark` property informs the browser to use dark chrome
+- `<meta name="theme-color" content="#212737">` sets mobile browser bar color
+- Tailwind and code highlighting automatically use dark variants
 
 ### OG Images
 - Per-post OG images generated at build time via Satori + resvg
@@ -140,7 +144,7 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - Custom transformers: filename display, diff notation, line highlighting, word highlighting
 
 ### Removed Upstream Features
-Tags, archives page, and featured/recent post split on homepage have been **intentionally removed**. Do not re-add them.
+Tags, archives page, featured/recent post split on homepage, and **light/dark mode toggle** have been **intentionally removed**. The site is permanently set to dark mode. Do not re-add these features.
 
 ## Astro Best Practices
 

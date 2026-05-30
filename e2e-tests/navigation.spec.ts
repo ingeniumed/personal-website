@@ -27,10 +27,6 @@ test.describe("Navigation & Layout", () => {
     await expect(aboutLink).toBeVisible();
   });
 
-  test("header has theme toggle button", async ({ page }) => {
-    await expect(page.locator("#theme-btn")).toBeVisible();
-  });
-
   test("has skip to content link", async ({ page }) => {
     const skipLink = page.locator('a[href="#main-content"]');
     await expect(skipLink).toBeAttached();

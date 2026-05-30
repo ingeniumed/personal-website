@@ -5,7 +5,6 @@ export const SITE = {
   desc: "Gopal Krishnan: developer, dad, and coffee enthusiast. Writing about software, parenting, and books.",
   title: "Gopal Krishnan | Developer, Dad, Coffee Enthusiast",
   ogImage: "og.png",
-  lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 6,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
