@@ -10,7 +10,7 @@ Source code for my [my personal blog](https://gkrishnan.blog/).
 - [Satori](https://github.com/vercel/satori): dynamic OG image generation at build time
 - [TypeScript](https://www.typescriptlang.org/)
 
-Based on the [AstroPaper](https://github.com/satnaing/astro-paper) theme.
+Based on a modified version of the [AstroPaper](https://github.com/satnaing/astro-paper) theme.
 
 ## Hosting
 
