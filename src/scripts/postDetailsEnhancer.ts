@@ -1,30 +1,18 @@
-import {
-  createPageLoadStarter,
-  createTeardownBag,
-  type Teardown,
-} from "@/scripts/lifecycle";
+import { createTeardownBag, type Teardown } from "@/scripts/lifecycle";
 
 let activeTeardown: Teardown | undefined;
 
+/**
+ * Creates the post details enhancer with scroll progress and heading links
+ *
+ * @param doc - The document to enhance (defaults to global document)
+ */
 function createPostDetailsEnhancer(doc: Document) {
   const lifecycle = createTeardownBag();
 
-  function ensureProgressBar() {
-    const existingProgressBar = doc.getElementById("myBar");
-    if (existingProgressBar) return;
-
-    const progressContainer = doc.createElement("div");
-    progressContainer.className =
-      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
-
-    const progressBar = doc.createElement("div");
-    progressBar.className = "progress-bar h-1 w-0 bg-accent";
-    progressBar.id = "myBar";
-
-    progressContainer.appendChild(progressBar);
-    doc.body.appendChild(progressContainer);
-  }
-
+  /**
+   * Binds scroll progress tracking to update the progress bar width
+   */
   function bindScrollProgress() {
     const myBar = doc.getElementById("myBar");
     if (!myBar) return;
@@ -48,6 +36,9 @@ function createPostDetailsEnhancer(doc: Document) {
     onScroll();
   }
 
+  /**
+   * Adds anchor links to all headings in the article
+   */
   function decorateHeadingLinks() {
     const headings = Array.from(doc.querySelectorAll("h2, h3, h4, h5, h6"));
 
@@ -70,6 +61,9 @@ function createPostDetailsEnhancer(doc: Document) {
     }
   }
 
+  /**
+   * Resets scroll position after Astro view transitions
+   */
   function bindAfterSwapScrollReset() {
     lifecycle.listen(doc, "astro:after-swap", () => {
       window.scrollTo({ left: 0, top: 0, behavior: "instant" });
@@ -78,7 +72,6 @@ function createPostDetailsEnhancer(doc: Document) {
 
   return {
     init() {
-      ensureProgressBar();
       bindScrollProgress();
       decorateHeadingLinks();
       bindAfterSwapScrollReset();
@@ -89,6 +82,11 @@ function createPostDetailsEnhancer(doc: Document) {
   };
 }
 
+/**
+ * Mounts the post details enhancer if an article element exists
+ *
+ * @param doc - The document to enhance (defaults to global document)
+ */
 export function mountPostDetailsEnhancer(doc: Document = document) {
   const article = doc.getElementById("article");
   if (!(article instanceof HTMLElement)) {
@@ -103,7 +101,3 @@ export function mountPostDetailsEnhancer(doc: Document = document) {
   enhancer.init();
   activeTeardown = () => enhancer.destroy();
 }
-
-export const startPostDetailsEnhancer = createPageLoadStarter(
-  mountPostDetailsEnhancer
-);
