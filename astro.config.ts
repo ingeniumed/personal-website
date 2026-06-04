@@ -33,9 +33,6 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
   },
   image: {
     responsiveStyles: true,
@@ -47,6 +44,7 @@ export default defineConfig({
       name: "IBM Plex Mono",
       cssVariable: "--font-ibm-plex-mono",
       fallbacks: ["monospace"],
+      formats: ["woff", "woff2"],
       options: {
         variants: [
           {
@@ -59,6 +57,7 @@ export default defineConfig({
           {
             src: [
               "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2",
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Regular.woff",
             ],
             weight: "400",
             style: "normal",
@@ -80,6 +79,7 @@ export default defineConfig({
           {
             src: [
               "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2",
+              "@ibm/plex/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Bold.woff",
             ],
             weight: "700",
             style: "normal",

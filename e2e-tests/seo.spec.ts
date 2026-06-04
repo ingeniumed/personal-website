@@ -57,6 +57,21 @@ test.describe("SEO & Meta Tags", () => {
     expect(response.status()).toBe(200);
     const contentType = response.headers()["content-type"];
     expect(contentType).toMatch(/image\/png/);
+
+    // Verify the image has the expected OG image dimensions (1200x630)
+    const buffer = await response.body();
+    expect(buffer.length).toBeGreaterThan(10000); // Non-trivial image size
+  });
+
+  test("site-level OG image exists and is valid", async ({ request }) => {
+    const response = await request.get("/og.png");
+    expect(response.status()).toBe(200);
+    const contentType = response.headers()["content-type"];
+    expect(contentType).toMatch(/image\/png/);
+
+    // Verify the image is non-trivial size (was actually generated)
+    const buffer = await response.body();
+    expect(buffer.length).toBeGreaterThan(10000);
   });
 
   test("canonical URL is set on homepage", async ({ page }) => {

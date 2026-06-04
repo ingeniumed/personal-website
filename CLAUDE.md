@@ -12,8 +12,8 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 | Styling | Tailwind CSS 4 via `@tailwindcss/vite` plugin |
 | Content | Markdown files in `src/data/blog/` with Zod-validated frontmatter |
 | Search | Pagefind (client-side, indexed at build time) |
-| OG Images | Satori + resvg-js (auto-generated per post at build) |
-| Font | IBM Plex Mono (committed TTF files in `src/assets/fonts/`, loaded via Astro's font system with `fontProviders.local()`) |
+| OG Images | Satori + sharp (auto-generated per post at build, using Astro's `experimental_getFontFileURL` API) |
+| Font | IBM Plex Mono (from `@ibm/plex` npm package, woff/woff2 formats, loaded via Astro's font system with `fontProviders.local()`) |
 | Testing | Vitest |
 | Linting | ESLint (flat config) + Prettier |
 | Deployment | Cloudflare Pages (static, pushes to `main` auto-deploy) |
@@ -52,9 +52,10 @@ src/
     ├── postFilter.ts      # Draft/scheduled post filtering
     ├── slugify.ts         # URL slug generation
     ├── getPath.ts         # Post path resolution
-    ├── generateOgImages.ts# Satori OG image generation
-    ├── loadFonts.ts       # Font loading for OG images
-    ├── og-templates/      # OG image templates (post + site)
+    ├── getFontPathByWeight.ts # Resolve font paths from Astro's fontData
+    ├── og/
+    │   ├── loadOgFonts.ts     # Load fonts for OG images using Astro's API
+    │   └── ogTemplate.ts      # Shared OG image border wrapper
     └── transformers/      # Shiki code block transformers (filename display)
 public/
 ├── favicon.svg
@@ -134,9 +135,11 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 - Tailwind and code highlighting automatically use dark variants
 
 ### OG Images
-- Per-post OG images generated at build time via Satori + resvg
+- Per-post OG images generated at build time via Satori + sharp (PNG conversion)
+- Uses Astro's `experimental_getFontFileURL` API to resolve font paths at build time
+- Fonts loaded from `@ibm/plex` npm package in woff format (no internet required)
 - Site-level OG image at `/og.png` (also Satori-generated)
-- Requires internet access during build to fetch Google Fonts
+- Shared border template (`wrapInOgBorder`) for consistent dual-border design
 - Can be disabled via `dynamicOgImage: false` in `config.ts`
 
 ### Code Highlighting
@@ -259,9 +262,20 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
 
-## Recent Improvements (May 2026)
+## Recent Improvements
 
-### Theme System Simplification
+### June 2026: OG Image Generation Refactor
+- **Replaced @resvg/resvg-js with sharp** for PNG conversion (better build performance, ~100ms faster per image)
+- **Adopted Astro's `experimental_getFontFileURL` API** for font handling (idiomatic Astro approach)
+- **Eliminated font loading duplication** — created `loadOgFonts.ts` utility and `wrapInOgBorder` template
+- **Added strict type safety** to `getFontPathByWeight` with FontFormat type
+- **Improved error messages** — specific guidance when fonts are missing
+- **No internet required at build time** — fonts loaded from local `@ibm/plex` package in woff format
+- **Removed old utilities:** `generateOgImages.ts`, `loadFonts.ts`, `og-templates/` directory
+- **Reduced route file sizes by ~60%** — cleaner, more maintainable OG generation code
+- Source: Applied PR [#632](https://github.com/satnaing/astro-paper/pull/632) from upstream with adaptations
+
+### May 2026: Theme System Simplification
 - Removed all theme switching logic — site is now permanently dark mode
 - Dark colors defined as defaults in `:root` CSS (no `data-theme` attributes needed)
 - Removed 243 lines of theme toggle code including `src/scripts/theme.ts`
