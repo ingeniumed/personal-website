@@ -1,6 +1,12 @@
 import type { FontData } from "astro:assets";
 
-type FontFormat = "woff" | "woff2" | "truetype" | "opentype" | "embedded-opentype" | "svg";
+type FontFormat =
+  | "woff"
+  | "woff2"
+  | "truetype"
+  | "opentype"
+  | "embedded-opentype"
+  | "svg";
 
 export function getFontPathByWeight(
   fonts: FontData[],

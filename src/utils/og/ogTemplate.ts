@@ -1,15 +1,17 @@
-import type { SatoriOptions } from "satori";
+import satori from "satori";
 
-type ReactElement = NonNullable<Parameters<typeof import("satori").default>[0]>;
+// Satori accepts React-like JSX objects but doesn't export a specific type for them.
+// Extract the element type from satori's function signature.
+type SatoriElement = Parameters<typeof satori>[0];
 
 /**
  * Common wrapper for OG images with dual-border design.
  * Creates the characteristic shadow + main border effect.
  *
  * @param content - The inner content to wrap (title, description, etc.)
- * @returns Satori ReactElement with wrapper applied
+ * @returns Satori-compatible JSX object with wrapper applied
  */
-export function wrapInOgBorder(content: ReactElement): ReactElement {
+export function wrapInOgBorder(content: SatoriElement): SatoriElement {
   return {
     type: "div",
     props: {
