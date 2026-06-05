@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeAll, afterEach } from "vitest";
 import postFilter from "./postFilter";
-import { SITE } from "@/config";
+import config from "@/config";
 import type { CollectionEntry } from "astro:content";
 
-const MARGIN_MS = SITE.scheduledPostMargin;
+const MARGIN_MS = config.posts?.scheduledPostMargin ?? 15 * 60 * 1000;
 
 function makePost(options: {
   draft?: boolean;

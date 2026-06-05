@@ -8,18 +8,20 @@ import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
-import { SITE } from "@/config";
+import config from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
+  return paginate(getSortedPosts(posts), {
+    pageSize: config.posts?.perPage ?? 6,
+  });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
 <Layout
-  title={`Posts | ${SITE.title}`}
+  title={`Posts | ${config.site.title}`}
   description="Articles about software development, parenting, books, and life by Gopal Krishnan."
 >
   <Header />

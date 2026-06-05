@@ -31,11 +31,11 @@
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
+    @apply bg-background font-app text-foreground selection:bg-accent/75 selection:text-background flex min-h-svh flex-col;
   }
   a,
   button {
-    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-accent outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -48,7 +48,7 @@
 }
 
 @utility app-layout {
-  @apply mx-auto w-full max-w-app px-4;
+  @apply max-w-app mx-auto w-full px-4;
 }
 
 .active-nav {

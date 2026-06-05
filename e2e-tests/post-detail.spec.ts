@@ -27,8 +27,11 @@ test.describe("Post Detail Page", () => {
     await page.goto("/posts/");
     const firstPostLink = page.locator("a[href^='/posts/']").first();
     await firstPostLink.click();
-    // ShareLinks component renders "Share this post on:" text
-    await expect(page.getByText("Share this post on:")).toBeVisible();
+
+    for (const platform of ["WordPress", "LinkedIn", "Mastodon"]) {
+      const shareLink = page.getByText(`Share this post on ${platform}`);
+      await expect(shareLink).toBeVisible();
+    }
   });
 
   test("post detail has heading anchor links in DOM", async ({ page }) => {

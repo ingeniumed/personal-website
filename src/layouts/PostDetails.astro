@@ -9,7 +9,7 @@ import BackToTopButton from "@/components/BackToTopButton.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import { getPath } from "@/utils/getPath";
 import slug from "slug";
-import { SITE } from "@/config";
+import config from "@/config";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -40,17 +40,17 @@ if (typeof initOgImage === "string") {
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
-if (!ogImageUrl && SITE.dynamicOgImage) {
+if (!ogImageUrl && (config.features?.dynamicOgImage ?? true)) {
   ogImageUrl = `${getPath(post.id, post.filePath)}/index.png`;
 }
 
-// Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
+// Resolve OG image URL (or fallback to config site OG image / default `og.png`)
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
 
 const layoutProps = {
-  title: `${title} | ${SITE.title}`,
+  title: `${title} | ${config.site.title}`,
   author,
   description,
   pubDatetime,
@@ -62,15 +62,15 @@ const layoutProps = {
 
 <Layout {...layoutProps}>
   <!-- Reading progress bar -->
-  <div class="progress-container fixed top-0 z-10 h-1 w-full bg-background">
-    <div class="progress-bar h-1 w-0 bg-accent" id="myBar"></div>
+  <div class="progress-container bg-background fixed top-0 z-10 h-1 w-full">
+    <div class="progress-bar bg-accent h-1 w-0" id="myBar"></div>
   </div>
 
   <Header />
   <main id="main-content" class="app-layout pt-4 pb-12" data-pagefind-body>
     <h1
       transition:name={slug(title.replaceAll(".", "-"))}
-      class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      class="text-accent inline-block text-2xl font-bold sm:text-3xl"
     >
       {title}
     </h1>
@@ -90,7 +90,7 @@ const layoutProps = {
 
       <article
         id="article"
-        class="app-prose w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+        class="app-prose max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg) w-full"
       >
         <Content />
       </article>

@@ -1,7 +1,7 @@
 ---
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
-import { SITE } from "@/config";
+import config from "@/config";
 import "@/styles/global.css";
 
 type Props = {
@@ -16,11 +16,11 @@ type Props = {
 };
 
 const {
-  title = SITE.title,
-  author = SITE.author,
-  profile = SITE.profile,
-  description = SITE.desc,
-  ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",
+  title = config.site.title,
+  author = config.site.author,
+  profile = config.site.profile,
+  description = config.site.description,
+  ogImage = config.site.ogImage ? `/${config.site.ogImage}` : "/og.png",
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
   pubDatetime,
   scrollSmooth = false,
@@ -52,8 +52,8 @@ const structuredData = isArticle
   : {
       "@context": "https://schema.org",
       "@type": "Person",
-      name: SITE.author,
-      url: SITE.website,
+      name: config.site.author,
+      url: config.site.url,
       sameAs: [
         "https://github.com/ingeniumed",
         "https://au.linkedin.com/in/ingeniumed",
@@ -63,8 +63,8 @@ const structuredData = isArticle
 
 <!doctype html>
 <html
-  dir={SITE.dir}
-  lang=`${SITE.lang ?? "en"}`
+  dir={config.site.dir ?? "ltr"}
+  lang=`${config.site.lang ?? "en"}`
   class={`${scrollSmooth && "scroll-smooth"}`}
 >
   <head>
@@ -93,7 +93,7 @@ const structuredData = isArticle
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
-    <meta property="og:site_name" content={SITE.author} />
+    <meta property="og:site_name" content={config.site.author} />
 
     <!-- Article Published/Modified time -->
     {
@@ -103,7 +103,7 @@ const structuredData = isArticle
             property="article:published_time"
             content={pubDatetime.toISOString()}
           />
-          <meta property="article:author" content={SITE.author} />
+          <meta property="article:author" content={config.site.author} />
         </>
       )
     }
@@ -127,7 +127,7 @@ const structuredData = isArticle
     <link
       rel="alternate"
       type="application/rss+xml"
-      title={SITE.title}
+      title={config.site.title}
       href={new URL("rss.xml", Astro.site)}
     />
 
