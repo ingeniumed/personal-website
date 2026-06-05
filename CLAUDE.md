@@ -10,7 +10,7 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 |-------|-----------|
 | Framework | Astro 6 (static output, no SSR) — upgraded ahead of upstream AstroPaper, which is still on Astro v5 |
 | Styling | Tailwind CSS 4 via `@tailwindcss/vite` plugin |
-| Content | Markdown files in `src/data/blog/` with Zod-validated frontmatter |
+| Content | Markdown files in `src/content/blog/` with Zod-validated frontmatter |
 | Search | Pagefind (client-side, indexed at build time) |
 | OG Images | Satori + sharp (auto-generated per post at build, using Astro's `experimental_getFontFileURL` API) |
 | Font | IBM Plex Mono (from `@ibm/plex` npm package, woff/woff2 formats, loaded via Astro's font system with `fontProviders.local()`) |
@@ -89,7 +89,7 @@ Pre-deploy checklist: `pnpm format && pnpm lint && pnpm build && pnpm test:all` 
 
 ## Blog Post Frontmatter
 
-Posts live in `src/data/blog/*.md`. Schema defined in `src/content.config.ts`:
+Posts live in `src/content/blog/*.md`. Schema defined in `src/content.config.ts`:
 
 ```yaml
 ---
@@ -100,7 +100,6 @@ description: A short description   # Required (SEO meta + excerpts)
 modDatetime: 2025-02-01T00:00:00Z  # Optional
 slug: my-post-title                # Optional (auto-derived from filename)
 draft: false                       # Optional, hides post when true
-featured: false                    # Optional
 ogImage: ./path-to-image.png       # Optional (auto-generated if omitted)
 canonicalURL: https://...          # Optional
 timezone: Australia/Sydney          # Optional (overrides site default)
@@ -115,7 +114,7 @@ Files prefixed with `_` are excluded from the collection (glob pattern: `**/[^_]
 File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getStaticPaths()`. No dynamic/SSR routes.
 
 ### Content Management
-- Blog posts are Markdown in `src/data/blog/` using Astro's content collections with a glob loader
+- Blog posts are Markdown in `src/content/blog/` using Astro's content collections with a glob loader
 - Schema validated via Zod in `src/content.config.ts`
 - Posts filtered by `postFilter.ts`: hides drafts and future-dated posts in production (with 15-min margin)
 - In dev mode, all non-draft posts are visible regardless of publish date
@@ -258,7 +257,7 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 ## Areas of Improvement
 
 - **No automated link checking.** Blog posts link to external sites (Goodreads, job listings, YouTube) that can go stale over time.
-- **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/data/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
+- **Legacy draft posts.** Some old AstroPaper sample posts may still exist in `src/content/blog/` marked as `draft: true`. These are invisible but could be cleaned up.
 - **Pagefind copy workaround.** The build copies `dist/pagefind` to `public/pagefind` as a post-build step. This is gitignored but adds complexity to the build pipeline.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
 
@@ -353,7 +352,7 @@ These have intentional customizations:
 These exist upstream but are not used here:
 - Docker files, `.vscode/`, community templates (`CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, etc.)
 - Demo images, `CHANGELOG.md`, `cz.yaml`, `AstroPaper-lighthouse-score.svg`
-- Demo blog posts in `src/data/blog/`
+- Demo blog posts in `src/content/blog/`
 
 ### Intentionally removed upstream features
 

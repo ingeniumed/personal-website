@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2022-08-05T04:06:56Z
 title: "Working at Automattic: The Interview Process"
 slug: working-at-automattic
-featured: true
 description: "A detailed breakdown of the Automattic interview process, from the recruiter chat and Slack interview to the code test, paid trial, and the final offer."
 ---
 

@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2026-05-13T09:08:22Z
 title: "Superannuation Tips"
 slug: superannuation-tips
-featured: false
 description: "Tips on how to improve one's superannuation's balance, while also investing outside your super."
 ---
 

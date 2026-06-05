@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2025-06-07T09:08:22Z
 title: "Parenting: A New Dad's Perspective"
 slug: parenting
-featured: false
 description: "Becoming a dad changed how I see my own parents. Reflections on the challenges of parenting, and a newfound empathy for the people who made it look easy."
 ---
 

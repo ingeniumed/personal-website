@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2026-03-30T10:00:00Z
 title: Red Rising
 slug: red-rising
-featured: false
 description: A recommendation for the Red Rising series by Pierce Brown, and why you should read it.
 ---
 

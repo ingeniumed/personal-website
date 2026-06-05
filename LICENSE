@@ -23,5 +23,5 @@ SOFTWARE.
 ---
 
 Note: This MIT license applies to the source code only. Blog post content
-(src/data/blog/), images (src/assets/images/), and the resume (public/resume.pdf)
+(src/content/blog/), images (src/assets/images/), and the resume (public/resume.pdf)
 are copyright Gopal Krishnan and all rights reserved.

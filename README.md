@@ -38,7 +38,7 @@ The build command runs type-checking, builds the site, generates the Pagefind se
 
 ## Adding a Blog Post
 
-Create a new `.md` file in `src/data/blog/` with this frontmatter:
+Create a new `.md` file in `src/content/blog/` with this frontmatter:
 
 ```yaml
 ---
@@ -46,7 +46,6 @@ author: Gopal Krishnan
 pubDatetime: 2026-01-05T03:05:04Z
 title: My Post Title
 slug: my-post-title
-featured: false
 description: A short description for SEO and post excerpts.
 ---
 Post content in Markdown goes here.
@@ -95,4 +94,4 @@ A GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every pull reques
 
 ## License
 
-The source code is licensed under the [MIT License](LICENSE). Blog content (`src/data/blog/`), images (`src/assets/images/`), and the resume (`public/resume.pdf`) are copyright Gopal Krishnan, all rights reserved.
+The source code is licensed under the [MIT License](LICENSE). Blog content (`src/content/blog/`), images (`src/assets/images/`), and the resume (`public/resume.pdf`) are copyright Gopal Krishnan, all rights reserved.
