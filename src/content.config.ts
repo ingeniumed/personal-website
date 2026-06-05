@@ -11,7 +11,6 @@ const blog = defineCollection({
     z.object({
       author: z.string().default(SITE.author),
       pubDatetime: z.date(),
-      modDatetime: z.date().optional().nullable(),
       title: z.string(),
       draft: z.boolean().optional(),
 

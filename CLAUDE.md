@@ -97,7 +97,6 @@ author: Gopal Krishnan           # Required (defaults to SITE.author)
 pubDatetime: 2025-01-14T03:48:50Z # Required, ISO 8601 UTC with Z suffix
 title: My Post Title               # Required
 description: A short description   # Required (SEO meta + excerpts)
-modDatetime: 2025-02-01T00:00:00Z  # Optional
 slug: my-post-title                # Optional (auto-derived from filename)
 draft: false                       # Optional, hides post when true
 ogImage: ./path-to-image.png       # Optional (auto-generated if omitted)
