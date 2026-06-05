@@ -17,7 +17,7 @@ Personal blog at [gkrishnan.blog](https://gkrishnan.blog/) — a static site abo
 | Testing | Vitest |
 | Linting | ESLint (flat config) + Prettier |
 | Deployment | Cloudflare Pages (static, pushes to `main` auto-deploy) |
-| Package Manager | **pnpm only** — never use npm or yarn (pinned via `packageManager`: `pnpm@11.2.2`) |
+| Package Manager | **pnpm only** — never use npm or yarn (pinned via `packageManager`: `pnpm@11.5.1`) |
 
 ## Directory Structure
 
@@ -30,7 +30,8 @@ src/
 ├── config.ts             # Site metadata: title, author, URL, timezone, pagination
 ├── constants.ts          # Social links and share link definitions
 ├── content.config.ts     # Blog collection schema (Zod + glob loader)
-├── data/blog/            # Blog posts as .md files
+├── content/
+│   └── blog/             # Blog posts as .md files
 ├── layouts/              # Layout components (Layout, Main, PostDetails)
 ├── pages/                # File-based routes
 │   ├── index.astro       # Homepage with avatar hero + recent posts
@@ -105,6 +106,8 @@ timezone: Australia/Sydney          # Optional (overrides site default)
 ---
 ```
 
+There is no `modDatetime` field anymore. Posts publish and sort strictly by `pubDatetime`, and article metadata/RSS use that same date.
+
 Files prefixed with `_` are excluded from the collection (glob pattern: `**/[^_]*.md`).
 
 ## Architecture Decisions
@@ -115,7 +118,9 @@ File-based routing via Astro pages. Posts use `[...slug]/index.astro` with `getS
 ### Content Management
 - Blog posts are Markdown in `src/content/blog/` using Astro's content collections with a glob loader
 - Schema validated via Zod in `src/content.config.ts`
+- `pubDatetime` is the only post date field. Modified dates are not tracked in frontmatter, UI metadata, structured data, or RSS.
 - Posts filtered by `postFilter.ts`: hides drafts and future-dated posts in production (with 15-min margin)
+- `getSortedPosts.ts` sorts strictly by `pubDatetime` in descending order
 - In dev mode, all non-draft posts are visible regardless of publish date
 
 ### Table Of Contents
@@ -171,10 +176,10 @@ The site uses progressive enhancement with minimal JavaScript for interactive fe
 **Initialization Pattern:**
 ```astro
 <script>
-  import { mountEnhancer } from "@/scripts/enhancer";
+  import { mountPostDetailsEnhancer } from "@/scripts/postDetailsEnhancer";
   
   function init() {
-    mountEnhancer();
+    mountPostDetailsEnhancer();
   }
   
   init();
@@ -261,6 +266,18 @@ When creating or editing blog posts on Gopal's behalf, follow these guidelines.
 - **No preview/staging documentation.** Cloudflare Pages likely provides preview deployments on PRs, but this is not documented in the repo.
 
 ## Recent Improvements
+
+### June 2026: Post Date Simplification
+- Removed `modDatetime` from the blog content schema and frontmatter documentation
+- Post pages now render only the published date, with no separate "Updated" label
+- SEO metadata and JSON-LD no longer emit modified-time fields
+- RSS items now use `pubDatetime` directly
+- Post sorting now uses publish date only, keeping archive order predictable
+
+### June 2026: Social Icon Cleanup
+- Standardized social and share icon imports in `src/constants.ts`
+- All icons now resolve from `src/assets/icons/socials/` with lowercase file names matching the SVG assets
+- Mail remains the reference pattern for social icon imports
 
 ### June 2026: OG Image Generation Refactor
 - **Replaced @resvg/resvg-js with sharp** for PNG conversion (better build performance, ~100ms faster per image)
