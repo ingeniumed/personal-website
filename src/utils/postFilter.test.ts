@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeAll, afterEach } from "vitest";
-import postFilter from "./postFilter";
+import { postFilter } from "./postFilter";
 import config from "@/config";
 import type { CollectionEntry } from "astro:content";
 

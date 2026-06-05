@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeAll, afterEach } from "vitest";
-import getSortedPosts from "./getSortedPosts";
+import { getSortedPosts } from "./getSortedPosts";
 import type { CollectionEntry } from "astro:content";
 
 function makePost(options: {

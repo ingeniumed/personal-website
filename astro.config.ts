@@ -1,4 +1,4 @@
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import {
@@ -123,4 +123,7 @@ export default defineConfig({
       },
     },
   ],
+  experimental: {
+    svgOptimizer: svgoOptimizer(),
+  },
 });
