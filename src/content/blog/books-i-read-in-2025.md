@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2026-01-05T03:05:04Z
 title: Every Book I Read in 2025
 slug: books-i-read-in-2025
-featured: true
 description: "Continuing my annual reading tradition, every book I read in 2025, from Sapiens and Meditations to Dungeon Crawler Carl and Siddhartha."
 ---
 

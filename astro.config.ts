@@ -1,4 +1,4 @@
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import {
@@ -7,14 +7,14 @@ import {
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
-import { SITE } from "./src/config";
+import config from "./src/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE.website,
+  site: config.site.url,
   integrations: [
     sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
+      filter: page => config.posts?.showArchives || !page.endsWith("/archives"),
     }),
   ],
   markdown: {
@@ -123,4 +123,7 @@ export default defineConfig({
       },
     },
   ],
+  experimental: {
+    svgOptimizer: svgoOptimizer(),
+  },
 });

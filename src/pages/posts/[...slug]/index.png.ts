@@ -5,10 +5,10 @@ import sharp from "sharp";
 import { loadOgFonts } from "@/utils/og/loadOgFonts";
 import { wrapInOgBorder } from "@/utils/og/ogTemplate";
 import { getPath } from "@/utils/getPath";
-import { SITE } from "@/config";
+import config from "@/config";
 
 export async function getStaticPaths() {
-  if (!SITE.dynamicOgImage) {
+  if (!(config.features?.dynamicOgImage ?? true)) {
     return [];
   }
 
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async ({ props, url }) => {
-  if (!SITE.dynamicOgImage) {
+  if (!(config.features?.dynamicOgImage ?? true)) {
     return new Response(null, {
       status: 404,
       statusText: "Not found",

@@ -3,7 +3,6 @@ author: Gopal Krishnan
 pubDatetime: 2026-02-25T10:17:54Z
 title: Dungeon Crawler Carl
 slug: dungeon-crawler-carl
-featured: false
 description: A recommendation for the Dungeon Crawler Carl audiobook series, all 7 books, and why you should check it out.
 ---
 

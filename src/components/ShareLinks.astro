@@ -1,26 +1,47 @@
 ---
-import { SHARE_LINKS } from "@/constants";
+import github from "@/assets/icons/socials/github.svg";
+import linkedin from "@/assets/icons/socials/linkedin.svg";
+import mail from "@/assets/icons/socials/mail.svg";
+import mastadon from "@/assets/icons/socials/mastadon.svg";
+import telegram from "@/assets/icons/socials/telegram.svg";
+import whatsapp from "@/assets/icons/socials/whatsapp.svg";
+import wordpress from "@/assets/icons/socials/wordpress.svg";
+import config from "@/config";
 import LinkButton from "./LinkButton.astro";
 
-const URL = Astro.url;
+const iconByName = {
+  github,
+  linkedin,
+  mail,
+  mastadon,
+  telegram,
+  whatsapp,
+  wordpress,
+};
+
+const shareLinks = config.shareLinks ?? [];
 ---
 
-{
-  SHARE_LINKS.length > 0 && (
-    <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
-      <span class="italic">Share this post on:</span>
-      <div class="text-center">
-        {SHARE_LINKS.map(social => (
+<div
+  class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"
+>
+  <div class="text-center">
+    {
+      shareLinks.map(shareLink => {
+        const Icon = iconByName[shareLink.name];
+
+        return (
           <LinkButton
-            href={`${social.href + URL}`}
+            href={shareLink.url}
             class="scale-90 p-2 hover:rotate-6 sm:p-1"
-            title={social.linkTitle}
+            title={shareLink.linkTitle}
+            rel="me"
           >
-            <social.icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
-            <span class="sr-only">{social.linkTitle}</span>
+            <Icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
+            <span class="sr-only">{shareLink.linkTitle}</span>
           </LinkButton>
-        ))}
-      </div>
-    </div>
-  )
-}
+        );
+      })
+    }
+  </div>
+</div>

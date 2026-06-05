@@ -3,7 +3,7 @@ import satori from "satori";
 import sharp from "sharp";
 import { loadOgFonts } from "@/utils/og/loadOgFonts";
 import { wrapInOgBorder } from "@/utils/og/ogTemplate";
-import { SITE } from "@/config";
+import config from "@/config";
 
 export const GET: APIRoute = async ({ url }) => {
   const fonts = await loadOgFonts(url);
@@ -38,14 +38,14 @@ export const GET: APIRoute = async ({ url }) => {
                 type: "p",
                 props: {
                   style: { fontSize: 72, fontWeight: "bold" },
-                  children: SITE.title,
+                  children: config.site.title,
                 },
               },
               {
                 type: "p",
                 props: {
                   style: { fontSize: 28 },
-                  children: SITE.desc,
+                  children: config.site.description,
                 },
               },
             ],
@@ -65,7 +65,7 @@ export const GET: APIRoute = async ({ url }) => {
               type: "span",
               props: {
                 style: { overflow: "hidden", fontWeight: "bold" },
-                children: new URL(SITE.website).hostname,
+                children: new URL(config.site.url).hostname,
               },
             },
           },
