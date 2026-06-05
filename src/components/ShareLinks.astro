@@ -20,6 +20,8 @@ const iconByName = {
 };
 
 const shareLinks = config.shareLinks ?? [];
+
+const urlToShare = Astro.url;
 ---
 
 <div
@@ -32,7 +34,7 @@ const shareLinks = config.shareLinks ?? [];
 
         return (
           <LinkButton
-            href={shareLink.url}
+            href={`${shareLink.url + urlToShare}`}
             class="scale-90 p-2 hover:rotate-6 sm:p-1"
             title={shareLink.linkTitle}
             rel="me"

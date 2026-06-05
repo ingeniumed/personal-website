@@ -60,11 +60,11 @@ src/
 ├── assets/images/    # Blog post and site images (optimized by Astro)
 ├── components/       # Astro UI components
 ├── config.ts         # Site-wide configuration
-├── constants.ts      # Social links
-├── data/blog/        # Blog posts (Markdown)
+├── content/blog/     # Blog posts (Markdown)
 ├── layouts/          # Page layouts
 ├── pages/            # Routes (index, about, posts, RSS, etc.)
 ├── styles/           # Global CSS and typography
+├── types/            # Types to be used across the repo
 └── utils/            # Helpers for sorting, filtering, OG generation
 public/
 ├── favicon.svg
