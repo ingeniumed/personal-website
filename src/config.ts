@@ -14,14 +14,13 @@ const config: Config = {
     timezone: "Australia/Sydney",
   },
   posts: {
-    perIndex: 4,
+    perIndex: 5,
     perPage: 6,
     showArchives: false,
     scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
   },
   features: {
     dynamicOgImage: true,
-    search: "pagefind",
   },
   socials: [
     {
@@ -52,19 +51,9 @@ const config: Config = {
       linkTitle: "Share this post on LinkedIn",
     },
     {
-      name: "whatsapp",
-      url: "https://wa.me/?text=",
-      linkTitle: "Share this post via WhatsApp",
-    },
-    {
       name: "mastadon",
       url: "https://mastodon.social/share?text=",
       linkTitle: "Share this post on Mastodon",
-    },
-    {
-      name: "telegram",
-      url: "https://t.me/share/url?url=",
-      linkTitle: "Share this post via Telegram",
     },
     {
       name: "mail",

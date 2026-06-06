@@ -23,9 +23,6 @@ pnpm-debug.log*
 # IDE settings
 .idea/
 
-# pagefind
-public/pagefind/
-
 # Playwright
 test-results/
 playwright-report/
