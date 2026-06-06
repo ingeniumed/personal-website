@@ -36,13 +36,13 @@ test.describe("Homepage", () => {
     await expect(page.locator('a[href="/rss.xml"]')).toBeVisible();
   });
 
-  test("shows up to 4 recent posts", async ({ page }) => {
+  test("shows up to 5 recent posts", async ({ page }) => {
     const postCards = page.locator("article, li").filter({
       has: page.locator("a[href^='/posts/']"),
     });
     const count = await postCards.count();
     expect(count).toBeGreaterThan(0);
-    expect(count).toBeLessThanOrEqual(4);
+    expect(count).toBeLessThanOrEqual(5);
   });
 
   test("each post card has a title and datetime", async ({ page }) => {

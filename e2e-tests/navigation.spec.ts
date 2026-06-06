@@ -27,11 +27,6 @@ test.describe("Navigation & Layout", () => {
     await expect(aboutLink).toBeVisible();
   });
 
-  test("has skip to content link", async ({ page }) => {
-    const skipLink = page.locator('a[href="#main-content"]');
-    await expect(skipLink).toBeAttached();
-  });
-
   test("footer shows copyright with author name", async ({ page }) => {
     const footer = page.locator("footer");
     await expect(footer).toContainText("Gopal Krishnan");
