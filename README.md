@@ -6,7 +6,6 @@ Source code for my [my personal blog](https://gkrishnan.blog/).
 
 - [Astro](https://astro.build/): static site generator
 - [Tailwind CSS](https://tailwindcss.com/): styling
-- [Pagefind](https://pagefind.app/): client-side static search
 - [Satori](https://github.com/vercel/satori): dynamic OG image generation at build time
 - [TypeScript](https://www.typescriptlang.org/)
 
@@ -34,7 +33,7 @@ pnpm build
 pnpm preview
 ```
 
-The build command runs type-checking, builds the site, generates the Pagefind search index, and copies it to the public directory.
+The build command runs type-checking, builds the site, and copies it to the public directory.
 
 ## Adding a Blog Post
 

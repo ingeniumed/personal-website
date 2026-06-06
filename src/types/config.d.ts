@@ -39,22 +39,10 @@ interface FeaturesConfig {
    * `public/{site.ogImage}` file is absent. When false, that file is required
    * for the default layout OG image (build fails if missing).
    */
-  dynamicOgImage?: boolean;
-  /**
-   * Search provider. "pagefind" ships in the base template.
-   * Set to false to disable search entirely.
-   */
-  search?: "pagefind" | false;
+  dynamicOgImage: boolean;
 }
 
-type SocialName =
-  | "github"
-  | "linkedin"
-  | "mail"
-  | "mastadon"
-  | "telegram"
-  | "whatsapp"
-  | "wordpress";
+type SocialName = "github" | "linkedin" | "mail" | "mastadon" | "wordpress";
 
 interface SocialConfig {
   /**

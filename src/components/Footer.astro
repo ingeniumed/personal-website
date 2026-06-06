@@ -1,13 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-const currentYear = new Date().getFullYear();
-
 type Props = {
   noMarginTop?: boolean;
 } & HTMLAttributes<"footer">;
 
 const { noMarginTop = false, class: className, ...attrs } = Astro.props;
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
@@ -15,11 +15,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   {...attrs}
 >
   <div
-    class:list={[
-      "py-6 sm:py-4",
-      "border-border border-t",
-      "flex items-center justify-center",
-    ]}
+    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
   >
     <div class="flex flex-col items-center whitespace-nowrap sm:flex-row">
       <span>Copyright &#169; {currentYear} Gopal Krishnan</span>
