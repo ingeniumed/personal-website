@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
@@ -60,9 +60,9 @@ const sortedPosts = getSortedPosts(posts);
             developer, dad and a coffee enthusiast.
           </p>
           {
-            (config.socials?.length ?? 0) > 0 && (
+            config.socialLinks && (
               <div class="mt-4 flex max-sm:flex-col sm:items-center">
-                <Socials />
+                <SocialLinks showSocialLinks={true} />
               </div>
             )
           }
