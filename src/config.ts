@@ -22,43 +22,33 @@ const config: Config = {
   features: {
     dynamicOgImage: true,
   },
-  socials: [
+  socialLinks: [
     {
       name: "github",
-      url: "https://github.com/ingeniumed",
-      linkTitle: "Gopal Krishnan on GitHub",
+      profileUrl: "https://github.com/ingeniumed",
+      linkTitle: "GitHub",
     },
     {
       name: "linkedin",
-      url: "https://au.linkedin.com/in/ingeniumed",
-      linkTitle: "Gopal Krishnan on LinkedIn",
+      profileUrl: "https://au.linkedin.com/in/ingeniumed",
+      shareUrl: "https://www.linkedin.com/sharing/share-offsite/?url=",
+      linkTitle: "LinkedIn",
     },
     {
       name: "wordpress",
-      url: "https://profiles.wordpress.org/ingeniumed/",
-      linkTitle: "Gopal Krishnan on WordPress.org",
-    },
-  ],
-  shareLinks: [
-    {
-      name: "wordpress",
-      url: "https://wordpress.com/press-this.php?u=",
-      linkTitle: "Share this post on WordPress.com",
-    },
-    {
-      name: "linkedin",
-      url: "https://www.linkedin.com/sharing/share-offsite/?url=",
-      linkTitle: "Share this post on LinkedIn",
+      profileUrl: "https://profiles.wordpress.org/ingeniumed/",
+      shareUrl: "https://wordpress.com/press-this.php?u=",
+      linkTitle: "WordPress",
     },
     {
       name: "mastadon",
-      url: "https://mastodon.social/share?text=",
-      linkTitle: "Share this post on Mastodon",
+      shareUrl: "https://mastodon.social/share?text=",
+      linkTitle: "Mastodon",
     },
     {
       name: "mail",
-      url: "mailto:?subject=See%20this%20post&body=",
-      linkTitle: "Share this post via email",
+      shareUrl: "mailto:?subject=See%20this%20post&body=",
+      linkTitle: "Email",
     },
   ],
 };

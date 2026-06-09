@@ -44,13 +44,16 @@ interface FeaturesConfig {
 
 type SocialName = "github" | "linkedin" | "mail" | "mastadon" | "wordpress";
 
-interface SocialConfig {
+interface SocialLinksConfig {
   /**
    * Must match an SVG filename in src/assets/icons/socials/.
    * e.g. "github" → src/assets/icons/socials/github.svg
    */
   name: SocialName;
-  url: string;
+  /** URL of the social profile */
+  profileUrl?: string;
+  /** Shareable URL */
+  shareUrl?: string;
   /**
    * Accessible label for the icon link (aria-label, title attribute).
    */
@@ -61,8 +64,5 @@ export interface Config {
   site: SiteConfig;
   posts?: PostsConfig;
   features?: FeaturesConfig;
-  /** Social profile links shown in header/footer */
-  socials: SocialConfig[];
-  /** Share links shown on post detail pages */
-  shareLinks: SocialConfig[];
+  socialLinks: SocialLinksConfig[];
 }

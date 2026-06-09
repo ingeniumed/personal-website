@@ -29,7 +29,7 @@ test.describe("Post Detail Page", () => {
     await firstPostLink.click();
 
     for (const platform of ["WordPress", "LinkedIn", "Mastodon"]) {
-      const shareLink = page.getByText(`Share this post on ${platform}`);
+      const shareLink = page.getByText(`${platform}`);
       await expect(shareLink).toBeVisible();
     }
   });

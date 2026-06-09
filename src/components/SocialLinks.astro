@@ -7,6 +7,10 @@ import wordpress from "@/assets/icons/socials/wordpress.svg";
 import config from "@/config";
 import LinkButton from "./LinkButton.astro";
 
+type Props = { showSocialLinks: boolean };
+
+const { showSocialLinks } = Astro.props;
+
 const iconByName = {
   github,
   linkedin,
@@ -15,23 +19,34 @@ const iconByName = {
   wordpress,
 };
 
-const socials = config.socials ?? [];
+const socialLinks = config.socialLinks ?? [];
+
+const urlToShare = Astro.url;
 ---
 
 <div class="flex flex-wrap items-center gap-1">
   {
-    socials.map(social => {
-      const Icon = iconByName[social.name];
+    socialLinks.map(socialLink => {
+      if (showSocialLinks && !socialLink.profileUrl) {
+        return null;
+      } else if (!showSocialLinks && !socialLink.shareUrl) {
+        return null;
+      }
+
+      const linkURL = showSocialLinks
+        ? socialLink.profileUrl
+        : `${socialLink.shareUrl}${urlToShare}`;
+      const Icon = iconByName[socialLink.name];
 
       return (
         <LinkButton
-          href={social.url}
+          href={linkURL}
           class="p-2 hover:rotate-6 sm:p-1"
-          title={social.linkTitle}
+          title={socialLink.linkTitle}
           rel="me"
         >
           <Icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
-          <span class="sr-only">{social.linkTitle}</span>
+          <span class="sr-only">{socialLink.linkTitle}</span>
         </LinkButton>
       );
     })
