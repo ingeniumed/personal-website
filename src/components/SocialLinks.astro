@@ -26,13 +26,9 @@ const urlToShare = Astro.url;
 
 <div class="flex flex-wrap items-center gap-1">
   {
-    socialLinks.map(socialLink => {
-      if (showSocialLinks && !socialLink.profileUrl) {
-        return null;
-      } else if (!showSocialLinks && !socialLink.shareUrl) {
-        return null;
-      }
-
+    socialLinks
+    .filter( socialLink => showSocialLinks ? socialLink.profileUrl : socialLink.shareUrl)
+    .map(socialLink => {
       const linkURL = showSocialLinks
         ? socialLink.profileUrl
         : `${socialLink.shareUrl}${urlToShare}`;
