@@ -27,24 +27,26 @@ const urlToShare = Astro.url;
 <div class="flex flex-wrap items-center gap-1">
   {
     socialLinks
-    .filter( socialLink => showSocialLinks ? socialLink.profileUrl : socialLink.shareUrl)
-    .map(socialLink => {
-      const linkURL = showSocialLinks
-        ? socialLink.profileUrl
-        : `${socialLink.shareUrl}${urlToShare}`;
-      const Icon = iconByName[socialLink.name];
+      .filter(socialLink =>
+        showSocialLinks ? socialLink.profileUrl : socialLink.shareUrl
+      )
+      .map(socialLink => {
+        const linkURL = showSocialLinks
+          ? socialLink.profileUrl
+          : `${socialLink.shareUrl}${urlToShare}`;
+        const Icon = iconByName[socialLink.name];
 
-      return (
-        <LinkButton
-          href={linkURL}
-          class="p-2 hover:rotate-6 sm:p-1"
-          title={socialLink.linkTitle}
-          rel="me"
-        >
-          <Icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
-          <span class="sr-only">{socialLink.linkTitle}</span>
-        </LinkButton>
-      );
-    })
+        return (
+          <LinkButton
+            href={linkURL}
+            class="p-2 hover:rotate-6 sm:p-1"
+            title={socialLink.linkTitle}
+            rel="me"
+          >
+            <Icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
+            <span class="sr-only">{socialLink.linkTitle}</span>
+          </LinkButton>
+        );
+      })
   }
 </div>
