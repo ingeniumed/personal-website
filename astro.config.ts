@@ -1,6 +1,9 @@
 import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
+import rehypeCallouts from "rehype-callouts";
+import mdx from "@astrojs/mdx";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -13,11 +16,15 @@ import config from "./src/config";
 export default defineConfig({
   site: config.site.url,
   integrations: [
+    mdx(),
     sitemap({
       filter: page => config.posts?.showArchives || !page.endsWith("/archives"),
     }),
   ],
   markdown: {
+    processor: unified({
+      rehypePlugins: [rehypeCallouts],
+    }),
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },
