@@ -58,6 +58,6 @@ Depending on the interest rate you are paying, and the tax bracket you are in it
 
 I haven't touched on SMSF or debt recycling as I personally haven't dug into them a lot. At the moment, I intend to stick to my superfund and steer clear of debt recycling but should that change I'd definitely write something up on it.
 
-> _Disclosure_: I'm not a financial advisor, and nothing in this post should be taken as financial or tax advice. This is meant to be a starting point, a general guide you can use to explore your options and have more informed conversations with a professional. Everyone's situation is different, so please speak with a qualified financial or tax adviser before making any decisions about your superannuation.
->
+> [!NOTE] Disclosure
+> I'm not a financial advisor, and nothing in this post should be taken as financial or tax advice. This is meant to be a starting point, a general guide you can use to explore your options and have more informed conversations with a professional. Everyone's situation is different, so please speak with a qualified financial or tax adviser before making any decisions about your superannuation.
 > This post also contains affiliate links. I only link to products and services I genuinely use or recommend. Nobody sponsors me to include them.
